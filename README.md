@@ -112,18 +112,19 @@ BB code engine trick is a little distinctive. It's actually amazing. It makes ea
 // If implemented directly in the  Blade View File.
 {!! Trickster::bbcode($user->bio) !!}
 ```
-The Supported BB Codes Currently are: 
+The Supported BB Codes Currently are:
+
 |           BB Code    |   Description   | Converted HTML |
 |----------------------|-----------------|----------------|
 |          [b]...[/b]  |    Bold Text    | `<b>...</b>`   |
 |          [i]...[/i]  |    Italics Text | `<i>...</i>` |
 |          [u]...[/u]  |    Underlined   | `<u>...</u>` |
-|   [img=url]alt[/img] |   Image Implementation. Where: url is the image url & alt is alternate text.| `<img src="#url" alt="Alternate Text" />` |
-|[youtube]id[/youtube] | Youtube Embed. Where id is the Video ID of youtube video. | YouTube video frame of width 400px & height 250px |
-|   [vimeo]id[/vimeo]  | Vimeo Embed. Where id is the Video ID of Vimeo video. | Vimeo video frame of width 400px & height 250px |
+|[img=url]alt[/img] |Image Implementation. Where: url is the image url & alt is alternate text.|`<img src="#url" alt="Alternate Text" />`|
+|[youtube]id[/youtube]|Youtube Embed. Where id is the Video ID of youtube video.| YouTube video frame of width 400px & height 250px|
+|[vimeo]id[/vimeo]|Vimeo Embed. Where id is the Video ID of Vimeo video.|Vimeo video frame of width 400px & height 250px|
 |          [p]...[/p]  | Paragraph. |  `<p>...</p>` |
 |            [br/]     | Line Break  |  `<br/>` |
-|[url=URL]ALT[/url]    | Adding a URL. Where: URL is the Target Link and ALT is the URL text to be shown. | `<a href="#url">Google</a>` |
+|[url=URL]ALT[/url]| Adding a URL. Where: URL is the Target Link and ALT is the URL text to be shown. | `<a href="#url">Google</a>` |
 
 ###9. Tags Sweeper
 Tag sweeper is a unwanted tag remover trick. It easily removes the unwanted script tags from the provided string. In accordance to the BB Code Engine,  Tag Sweeper Cleans the HTML `<script></script>` code and leaves the BB Code making the supplied text **Clean and Safe**.
