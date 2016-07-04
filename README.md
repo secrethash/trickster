@@ -5,7 +5,102 @@
 * Trickster provides tricks that makes coding with Laravel easy.
 * With **Trickster** inside **Laravel**, your app will become a **Gambit**. :P
 
+##Installation
+Installing Trickster is easy. Just add the below line to your Laravel's composer.json file.
+
+`"secrethash/trickster": "1.2.*"`
+
+or just type the command:
+`composer require secrethash/trickster`
+
+##Requirements
+* **Laravel 5.x**
+* **cURL**
+* **PHP 5.4.x**
+
+##Usage
+To start using ***Trickster***, you will be needed to set it up first. Follow the below steps to setup **Trickster**:
+
+###1. Service Provider
+You will be needing to add the Trickster Service Provider in your `app.php` which is inside the `config` directory.
+
+* Open `config\app.php`
+* Find `'providers'`
+* At the last of this array in `Application Service Providers` add `Secrethash\Trickster\TricksterServiceProvider::class,`
+
+###2. Facade
+To use **Trickster** flexibly, you need to add the Facade also. Facade will let you use Trickster directly. All you will need to do is add `use Trickster;` at the head of the controller below namespace and use it by `Trickster::trickName();`
+
+**Lets Add the `Trickster` Facade:**
+
+* Open `config\app.php`
+* Find `'aliases'` array.
+* At the end of this array, add `'Trickster' => Secrethash\Trickster\Facade\Trickster::class,`
+
+###3. Configuration
+First of all you will need to run the following command in your console:
+`php artisan vendor:publish --provider="Secrethash\Trickster\TricksterServiceProvider"`
+>This command will publish the `trickster.php` configuration file for Trickster to your application default `config` directory.
+
+From `config\trickster.php` you can edit the default configurations.
+
+###4. Ready, Steady, GO!
+***You are almost done. Now what to do when you want to use a Trickster's Trick?***
+
+Here is a sample Controller to show you how to add Trickster and Use it:
+```php
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+use Auth;
+use Trickster; // Simply add the Facade
+
+class TricksterDemoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //checking if the user is Authenticated
+        if (Auth::check()) {
+	        $user = Auth::user();
+	        // Grabbing Gravatar
+	        $gravatar = Trickster::gravatar($user->email, '200');
+	     }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+}
+
+```
+
+If you want to use Trickster inside a view file, call the `Trickster` method directly. That is the advantage of Facade.
+
+For example:
+`{!! Trickster::bbcode($user->bio) !!}`
+or
+`{{ Trickster::truncator($blog->desc, '150', '(...summary)') }}`
+
+
 ##Trickster's Tricks
+
 ###1. Truncator
 Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses(...) or desired line at the end. For example:
 
@@ -13,14 +108,14 @@ Truncate is a Text Truncator. It Truncates the text and enable you to add ellips
 
 Just call the Trickster and provide it with details of the given parameters.
 ```php
-Trickster::truncate('Supplied text is written here, can also be given in a variable; lets leave it simple.', 30, '(read more...)');
+Trickster::truncator('Supplied text is written here, can also be given in a variable; lets leave it simple.', 30, '(read more...)');
 // Output: Supplied text is written here, (read more...)
 ```
 
 ###2. Email Validator
 Email Validator gives you the power of validating the email address by just a simple line of code: 
 ``` php
-Trickster::validateEmail($email)
+Trickster::emailValid('someone@example.com');
 ``` 
 With Trickster by your side you will not have to write the validation code again and again. Just mention the Facade of Trickster an the validation function that's it.
 
@@ -231,6 +326,7 @@ Array
 )
 */
 ```
+
 
 ###17. IP Grabber
 Grabs the user's IP address. Simple but useful.
