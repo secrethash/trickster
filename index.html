@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Trickster by secrethash</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Trickster</h1>
+        <h2>Trickster - Laravel package.</h2>
+        <a href="https://github.com/secrethash/trickster" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a id="trickster" class="anchor" href="#trickster" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Trickster</h1>
+
+<h2>
+<a id="why-trickster" class="anchor" href="#why-trickster" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why Trickster?</h2>
+
+<ul>
+<li>Trickster is an Laravel plugin that makes Laravel Fun.</li>
+<li>Trickster provides tricks that makes coding with Laravel easy.</li>
+<li>With <strong>Trickster</strong> inside your <strong>Laravel framework</strong>, your app will become a <strong>Gambit</strong>. :-P</li>
+</ul>
+
+<h2>
+<a id="installation" class="anchor" href="#installation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installation</h2>
+
+<p>Installing Trickster is easy. Just add the below line to your Laravel's composer.json file.</p>
+
+<p><code>"secrethash/trickster": "1.2.*"</code></p>
+
+<p>or just type the command:
+<code>composer require secrethash/trickster</code></p>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li><strong>Laravel 5.x</strong></li>
+<li><strong>cURL</strong></li>
+<li><strong>PHP 5.4.x</strong></li>
+</ul>
+
+<h2>
+<a id="usage" class="anchor" href="#usage" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Usage</h2>
+
+<p>To start using <strong><em>Trickster</em></strong>, you will be needed to set it up first. Follow the below steps to setup <strong>Trickster</strong>:</p>
+
+<h3>
+<a id="1-service-provider" class="anchor" href="#1-service-provider" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Service Provider</h3>
+
+<p>You will be needing to add the Trickster Service Provider in your <code>app.php</code> which is inside the <code>config</code> directory.</p>
+
+<ul>
+<li>Open <code>config\app.php</code>
+</li>
+<li>Find <code>'providers'</code>
+</li>
+<li>At the last of this array in <code>Application Service Providers</code> add <code>Secrethash\Trickster\TricksterServiceProvider::class,</code>
+</li>
+</ul>
+
+<h3>
+<a id="2-facade" class="anchor" href="#2-facade" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Facade</h3>
+
+<p>To use <strong>Trickster</strong> flexibly, you need to add the Facade also. Facade will let you use Trickster directly. All you will need to do is add <code>use Trickster;</code> at the head of the controller below namespace and use it by <code>Trickster::trickName();</code></p>
+
+<p><strong>Lets Add the <code>Trickster</code> Facade:</strong></p>
+
+<ul>
+<li>Open <code>config\app.php</code>
+</li>
+<li>Find <code>'aliases'</code> array.</li>
+<li>At the end of this array, add <code>'Trickster' =&gt; Secrethash\Trickster\Facade\Trickster::class,</code>
+</li>
+</ul>
+
+<h3>
+<a id="3-configuration" class="anchor" href="#3-configuration" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Configuration</h3>
+
+<p>First of all you will need to run the following command in your console:
+<code>php artisan vendor:publish --provider="Secrethash\Trickster\TricksterServiceProvider"</code></p>
+
+<blockquote>
+<p>This command will publish the <code>trickster.php</code> configuration file for Trickster to your application default <code>config</code> directory.</p>
+</blockquote>
+
+<p>From <code>config\trickster.php</code> you can edit the default configurations.</p>
+
+<h3>
+<a id="4-ready-steady-go" class="anchor" href="#4-ready-steady-go" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. Ready, Steady, GO!</h3>
+
+<p><strong><em>You are almost done. Now what to do when you want to use a Trickster's Trick?</em></strong></p>
+
+<p>Here is a sample Controller to show you how to add Trickster and Use it:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-pse">&lt;?php</span><span class="pl-s1"></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">namespace</span> <span class="pl-en">App\Http\Controllers</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Illuminate\Http\Request</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">App\Http\Requests</span>;</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Auth</span>;</span>
+<span class="pl-s1"><span class="pl-k">use</span> <span class="pl-c1">Trickster</span>; <span class="pl-c">// Simply add the Facade</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-k">class</span> <span class="pl-en">TricksterDemoController</span> <span class="pl-k">extends</span> <span class="pl-e">Controller</span></span>
+<span class="pl-s1">{</span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * Display a listing of the resource.</span></span>
+<span class="pl-s1"><span class="pl-c">     *</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@return</span> \Illuminate\Http\Response</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">index</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">//checking if the user is Authenticated</span></span>
+<span class="pl-s1">        <span class="pl-k">if</span> (<span class="pl-c1">Auth</span><span class="pl-k">::</span>check()) {</span>
+<span class="pl-s1">            <span class="pl-smi">$user</span> <span class="pl-k">=</span> <span class="pl-c1">Auth</span><span class="pl-k">::</span>user();</span>
+<span class="pl-s1">            <span class="pl-c">// Grabbing Gravatar</span></span>
+<span class="pl-s1">            <span class="pl-smi">$gravatar</span> <span class="pl-k">=</span> <span class="pl-c1">Trickster</span><span class="pl-k">::</span>gravatar(<span class="pl-smi">$user</span><span class="pl-k">-&gt;</span><span class="pl-smi">email</span>, <span class="pl-s"><span class="pl-pds">'</span>200<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1">         }</span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">    <span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c">     * Show the form for creating a new resource.</span></span>
+<span class="pl-s1"><span class="pl-c">     *</span></span>
+<span class="pl-s1"><span class="pl-c">     * <span class="pl-k">@return</span> \Illuminate\Http\Response</span></span>
+<span class="pl-s1"><span class="pl-c">     */</span></span>
+<span class="pl-s1">    <span class="pl-k">public</span> <span class="pl-k">function</span> <span class="pl-en">create</span>()</span>
+<span class="pl-s1">    {</span>
+<span class="pl-s1">        <span class="pl-c">//</span></span>
+<span class="pl-s1">    }</span>
+<span class="pl-s1"></span>
+<span class="pl-s1">}</span>
+<span class="pl-s1"></span></pre></div>
+
+<p>If you want to use Trickster inside a view file, call the <code>Trickster</code> method directly. That is the advantage of Facade.</p>
+
+<p>For example:
+<code>{!! Trickster::bbcode($user-&gt;bio) !!}</code>
+or
+<code>{{ Trickster::truncator($blog-&gt;desc, '150', '(...summary)') }}</code></p>
+
+<h2>
+<a id="tricksters-tricks" class="anchor" href="#tricksters-tricks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Trickster's Tricks</h2>
+
+<h3>
+<a id="1-truncator" class="anchor" href="#1-truncator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Truncator</h3>
+
+<p>Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses(...) or desired line at the end. For example:</p>
+
+<blockquote>
+<p><em>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those inter <strong>(read more...)</strong></em></p>
+</blockquote>
+
+<p>Just call the Trickster and provide it with details of the given parameters.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>truncator(<span class="pl-s"><span class="pl-pds">'</span>Supplied text is written here, can also be given in a variable; lets leave it simple.<span class="pl-pds">'</span></span>, <span class="pl-c1">30</span>, <span class="pl-s"><span class="pl-pds">'</span>(read more...)<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c">// Output: Supplied text is written here, (read more...)</span></span></pre></div>
+
+<h3>
+<a id="2-email-validator" class="anchor" href="#2-email-validator" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>2. Email Validator</h3>
+
+<p>Email Validator gives you the power of validating the email address by just a simple line of code: </p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>emailValid(<span class="pl-s"><span class="pl-pds">'</span>someone@example.com<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<p>With Trickster by your side you will not have to write the validation code again and again. Just mention the Facade of Trickster an the validation function that's it.</p>
+
+<h3>
+<a id="3-slug-converter" class="anchor" href="#3-slug-converter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3. Slug Converter</h3>
+
+<p>Slug Converter makes your life easy for creating search engine friendly slug for your url.</p>
+
+<blockquote>
+<p>For example: <strong>Text</strong>: <em>Are search engines friendly to search engines?</em></p>
+
+<blockquote>
+<p><strong>SLUGish URL</strong>: <em>example.com/are-search-engines-friendly-to-search-engines</em></p>
+</blockquote>
+</blockquote>
+
+<p><strong><em>COOL HUH?</em></strong></p>
+
+<p>It is really very simple with Trickster. Just call Trickster and specify the slug function, provide in the text and Ta-DA!</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>slug(<span class="pl-s"><span class="pl-pds">'</span>Are search engines friendly to search engines?<span class="pl-pds">'</span></span>); <span class="pl-c">// Just One Line!</span></span>
+<span class="pl-s1"><span class="pl-c">//-&gt; OR</span></span>
+<span class="pl-s1"><span class="pl-smi">$slug</span> <span class="pl-k">=</span> <span class="pl-s"><span class="pl-pds">'</span>Are search engines friendly to search engines?<span class="pl-pds">'</span></span>;</span>
+<span class="pl-s1"><span class="pl-smi">$slug</span> <span class="pl-k">=</span> <span class="pl-c1">Trickster</span><span class="pl-k">::</span>slug(<span class="pl-smi">$slug</span>); <span class="pl-c">// That's it!</span></span></pre></div>
+
+<h3>
+<a id="4-youtube-embed" class="anchor" href="#4-youtube-embed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4. YouTube Embed</h3>
+
+<p>YouTube Embedding can never be more easier! Embed YouTube Videos without writing lines of code just tell the Trickster about it. Call Trickster by:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>youtube(<span class="pl-s"><span class="pl-pds">'</span>VIDEO URL<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>FRAME WIDTH<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>FRAME HEIGHT<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>FRAME THEME<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c">//OR LEAVE EVERYTHING ELSE FOR DEFAULT VALUES, JUST PUT THE LINK</span></span>
+<span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>youtube(<span class="pl-s"><span class="pl-pds">'</span>VIDEO URL<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<p><strong><em>DEFAULT VALUES:</em></strong></p>
+
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Description</th>
+<th>Required</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Video URL</td>
+<td>URL to the YouTube video</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Frame Width</td>
+<td>Width of the video Frame</td>
+<td>NO</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Frame Height</td>
+<td>Height of the Video frame</td>
+<td>NO</td>
+<td>250</td>
+</tr>
+<tr>
+<td>Frame Theme</td>
+<td>
+<strong>dark</strong> or <strong>light</strong> theme</td>
+<td>NO</td>
+<td>dark</td>
+</tr>
+</tbody>
+</table>
+
+<h3>
+<a id="5-gravatar-grabber" class="anchor" href="#5-gravatar-grabber" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5. Gravatar Grabber</h3>
+
+<p>This amazing trick helps you to easily get the gravatar in the desired <strong>size</strong>, with desired <strong>rating</strong>. Not only that, but it also helps you to set the desired <strong>default image</strong> in case the grabbing fails. Not yet finished, two more amazing features; allows you to <strong>set the option of returning only the url of the gravatar or even the gravatar with the whole <code>&lt;img /&gt;</code> tag</strong> and in case you want Trickster to return the whole <em>img</em> tag then you also have the option of <strong>setting desired attributes in an array <em>(ex. below)</em></strong>.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>gravatar(<span class="pl-s"><span class="pl-pds">'</span>example@email.com<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>200<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>monsterid<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>r<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>true<span class="pl-pds">'</span></span>, <span class="pl-c1">array</span>(<span class="pl-s"><span class="pl-pds">'</span>class<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>img-class<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>key<span class="pl-pds">'</span></span><span class="pl-k">=&gt;</span><span class="pl-s"><span class="pl-pds">'</span>value<span class="pl-pds">'</span></span>));</span></pre></div>
+
+<p><strong>The Parameters Explained:</strong></p>
+
+<ul>
+<li>
+<strong>Email Address</strong>: Just simple email address. <em>NO DEFAULT</em>, <em>REQUIRED</em>.</li>
+<li>
+<strong>Size</strong>: Size of image in pixels. <em>DEFAULT: 100</em>, <em>NOT REQUIRED</em>.</li>
+<li>
+<strong>Default image</strong>: Default Image like <em>mm</em>(mystery man), <em>monsterid</em>, <em>identicon</em>, <em>wavatar</em>, 404. <em>DEFAULT: mm</em>, <em>NOT REQUIRED</em>.</li>
+<li>
+<strong>Rating</strong>: Image Max Rating (for ex. <em>g</em>, <em>pg</em>, <em>r</em>, <em>x</em>). <em>DEFAULT: g</em>, <em>NOT REQUIRED</em>.</li>
+<li>
+<strong><code>&lt;img /&gt;</code></strong>: Do you want full HTML image tag? This parameter should be supplied with boolean value (TRUE/FALSE). <em>DEFAULT: false</em>, <em>NOT REQUIRED</em>.</li>
+<li>
+<strong>Key-Value Attributes</strong>: An array is to be passed to defined any special attributes required by the html image tag, if requested. <em>NO DEFAULT</em>, <em>NOT REQUIRED</em>
+</li>
+</ul>
+
+<h3>
+<a id="6-extension-splitter" class="anchor" href="#6-extension-splitter" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>6. Extension Splitter</h3>
+
+<p>This simple trick splits the file extension of the file supplied as the parameter and returns it. Simply call the Trickster and provide the full file name, the trick will split the file ext. from the file name and return it.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>getExtension(<span class="pl-s"><span class="pl-pds">'</span>really-funny.image.jpg<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<p><strong><em>Finished? Not Yet!</em></strong></p>
+
+<h3>
+<a id="7-simple-social-analytics" class="anchor" href="#7-simple-social-analytics" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>7. Simple Social Analytics</h3>
+
+<p>This trick eases your life, seriously. Simple and easy way to show your social counts with Trickster. Trickster's Simple Social Analytics shows the number of Like or Tweets over a specific URL when the trick is executed. </p>
+
+<ul>
+<li>Supported Social Networks:
+
+<ul>
+<li>Facebook</li>
+<li>Twitter</li>
+</ul>
+</li>
+<li>Returned Strings
+
+<ul>
+<li>Facebook
+
+<ul>
+<li>Likes</li>
+</ul>
+</li>
+<li>Twitter
+
+<ul>
+<li>Tweets</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$likes</span> <span class="pl-k">=</span> <span class="pl-c1">Trickster</span><span class="pl-k">::</span>social(<span class="pl-s"><span class="pl-pds">'</span>facebook<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>http://github.com/secrethash<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$likes</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span> Likes on Github.com/secrethash<span class="pl-pds">'</span></span>;</span></pre></div>
+
+<blockquote>
+<p>Output: 95457821 Likes on Github.com/secrethash</p>
+</blockquote>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$tweets</span> <span class="pl-k">=</span> <span class="pl-c1">Trickster</span><span class="pl-k">::</span>social(<span class="pl-s"><span class="pl-pds">'</span>twitter<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>http://github.com/secrethash<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$tweets</span><span class="pl-k">.</span><span class="pl-s"><span class="pl-pds">'</span> Tweets on Github.com/secrethash<span class="pl-pds">'</span></span>;</span></pre></div>
+
+<blockquote>
+<p>Output: 54859562 Tweets on Github.com/secrethash</p>
+</blockquote>
+
+<p>Simple?</p>
+
+<h3>
+<a id="8-bb-code-engine" class="anchor" href="#8-bb-code-engine" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>8. BB Code Engine</h3>
+
+<p>BB code engine trick is a little distinctive. It's actually amazing. It makes easy to convert the BB Code to HTML format. Easy to initialize, it makes it unique.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// If implemented directly in the  Blade View File.</span></span>
+<span class="pl-s1">{<span class="pl-k">!!</span> <span class="pl-c1">Trickster</span><span class="pl-k">::</span>bbcode(<span class="pl-smi">$user</span><span class="pl-k">-&gt;</span><span class="pl-smi">bio</span>) <span class="pl-k">!!</span>}</span></pre></div>
+
+<p>The Supported BB Codes Currently are: 
+|           BB Code    |   Description   | Converted HTML |
+|----------------------|-----------------|----------------|
+|          [b]...[/b]  |    Bold Text    | <code>&lt;b&gt;...&lt;/b&gt;</code>   |
+|          [i]...[/i]  |    Italics Text | <code>&lt;i&gt;...&lt;/i&gt;</code> |
+|          [u]...[/u]  |    Underlined   | <code>&lt;u&gt;...&lt;/u&gt;</code> |
+|   [img=url]alt[/img] |   Image Implementation. Where: url is the image url &amp; alt is alternate text.| <code>&lt;img src="#url" alt="Alternate Text" /&gt;</code> |
+|[youtube]id[/youtube] | Youtube Embed. Where id is the Video ID of youtube video. | YouTube video frame of width 400px &amp; height 250px |
+|   [vimeo]id[/vimeo]  | Vimeo Embed. Where id is the Video ID of Vimeo video. | Vimeo video frame of width 400px &amp; height 250px |
+|          [p]...[/p]  | Paragraph. |  <code>&lt;p&gt;...&lt;/p&gt;</code> |
+|            [br/]     | Line Break  |  <code>&lt;br/&gt;</code> |
+|[url=URL]ALT[/url]    | Adding a URL. Where: URL is the Target Link and ALT is the URL text to be shown. | <code>&lt;a href="#url"&gt;Google&lt;/a&gt;</code> |</p>
+
+<h3>
+<a id="9-tags-sweeper" class="anchor" href="#9-tags-sweeper" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>9. Tags Sweeper</h3>
+
+<p>Tag sweeper is a unwanted tag remover trick. It easily removes the unwanted script tags from the provided string. In accordance to the BB Code Engine,  Tag Sweeper Cleans the HTML <code>&lt;script&gt;&lt;/script&gt;</code> code and leaves the BB Code making the supplied text <strong>Clean and Safe</strong>.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>clean(<span class="pl-smi">$string</span>);</span></pre></div>
+
+<h3>
+<a id="10-time-ago" class="anchor" href="#10-time-ago" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>10. Time Ago</h3>
+
+<p><strong>Time ago</strong> is a wonderful way of displaying the post time. You can use the Trickster's Facade <code>Trickster</code> to convert easily the provided Time &amp; Date to Time Ago. The default format for this is <code>Y-m-d H:i:s</code>. In simple words <code>1996-07-30 21:52:30</code>, <code>Year-Month-Day Hour:Min:Sec</code></p>
+
+<blockquote>
+<p>For example: <em>This repo was created 2 months ago</em></p>
+</blockquote>
+
+<p><strong>Trick:</strong></p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>timeAgo(<span class="pl-s"><span class="pl-pds">'</span>1996-07-30 21:52:30<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h3>
+<a id="11-cipher" class="anchor" href="#11-cipher" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>11. Cipher</h3>
+
+<p>Cipher enables you to encrypt any provided string of plain text to convert into Encrypted text form. Any PHP supported algorithm can be provided to <strong>Cipher</strong> to encrypt it. You can also encrypt a string and add a <strong>Salt</strong> to make it more secure. One will need the <strong>Salt</strong> to decrypt it.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>encryptString(<span class="pl-s"><span class="pl-pds">'</span>SHA1<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Text to Encrypt<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>Desired Salt<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h3>
+<a id="12-vimeo-video-embed" class="anchor" href="#12-vimeo-video-embed" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>12. Vimeo Video Embed</h3>
+
+<p>Vimeo Video Embed, same as YouTube Video Embed. It needs the video link of Vimeo Video as an input. Same as Youtube Embed you can set custom width and height in it also. </p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>vimeo(<span class="pl-s"><span class="pl-pds">'</span>https://vimeo.com/30626474<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>400<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>250<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c">//-&gt; OR, Simple &lt;-//</span></span>
+<span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>vimeo(<span class="pl-s"><span class="pl-pds">'</span>https://vimeo.com/30626474<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h3>
+<a id="13-video-info-grabber" class="anchor" href="#13-video-info-grabber" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>13. Video Info Grabber</h3>
+
+<p>A great way of getting the video information from <strong>YouTube and Vimeo</strong>. <em>Video Info Grabber</em> makes it easy for you to grab the video info from link of YouTube &amp; Vimeo video portals and return an array containing the video info. Returning as an array gives you the flexibility to use the info as you want.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>getVideoInfo(<span class="pl-s"><span class="pl-pds">'</span>https://vimeo.com/30626474<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<div class="highlight highlight-text-html-basic"><pre>// Output
+Array
+(
+    [title] =&gt; The Official Space Ibiza Closing Party 2011 Video
+    [description] =&gt; 
+    [thumbnail] =&gt; http://i1.ytimg.com/vi/AL-QX0wj44A/default.jpg
+    [duration] =&gt; 962
+    [upload_date] =&gt; 2011-11-05 02:11:05
+)</pre></div>
+
+<h3>
+<a id="14-wikipedia-grabber" class="anchor" href="#14-wikipedia-grabber" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>14. Wikipedia Grabber</h3>
+
+<p>This simple trick helps you to get the <strong>Wikipedia version definition</strong> of a particular keyword. Just pass the key word as the input to this function of <code>Trickster</code> and get the definition right away as return string. Remember, like the above function this one also returns an array as it returns not only definition but also the input value and the link to Wikipedia, where that definition is. The example is well explained below:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>wiki(<span class="pl-s"><span class="pl-pds">'</span>github<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// Returns</span></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">Array</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">(</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [0] =&gt; GitHub</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [1] =&gt; GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features. </span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [2] =&gt; http://en.wikipedia.org/wiki/GitHub</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">)</span></span></span>
+<span class="pl-s1"><span class="pl-c">*/</span></span></pre></div>
+
+<p>So if you only want to display the definition of <strong>GitHub</strong> as shown in the above example:</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-smi">$trick</span> <span class="pl-k">=</span> <span class="pl-c1">Trickster</span><span class="pl-k">::</span>wiki(<span class="pl-s"><span class="pl-pds">'</span>github<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"><span class="pl-c1">echo</span> <span class="pl-smi">$trick</span>[<span class="pl-c1">1</span>];</span></pre></div>
+
+<h3>
+<a id="15-url-shortener" class="anchor" href="#15-url-shortener" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>15. URL Shortener</h3>
+
+<p>URL shortener make your url short using the Google's goo.gl API and TinyURL API. Make your life simple with just one liner URL Shortener that can shorten the URL using 2 distinctive APIs.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// Google's URL Shortener</span></span>
+<span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>shortenUrl(<span class="pl-s"><span class="pl-pds">'</span>http://github.io<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>google<span class="pl-pds">'</span></span>);</span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">// TinyURL URL Shortener</span></span>
+<span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>shortenUrl(<span class="pl-s"><span class="pl-pds">'</span>http://github.com<span class="pl-pds">'</span></span>, <span class="pl-s"><span class="pl-pds">'</span>tinyurl<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<h3>
+<a id="16-suggest" class="anchor" href="#16-suggest" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>16. Suggest</h3>
+
+<p>Suggest uses the Google Suggest API to get the keyword suggestions. Just provide the input of the keyword that you want the suggestions for as the first parameter and the results will be generated and returned as an array.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>suggest(<span class="pl-s"><span class="pl-pds">'</span>break<span class="pl-pds">'</span></span>);</span></pre></div>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c">// Output</span></span>
+<span class="pl-s1"></span>
+<span class="pl-s1"><span class="pl-c">/**</span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">Array</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">(</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [0] =&gt; breaking</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [1] =&gt; breaking bad</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [2] =&gt; break the glass</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [3] =&gt; break plan</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [4] =&gt; breaking bad imdb</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [5] =&gt; kitkat break</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [6] =&gt; break the bones</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [7] =&gt; breakthrough</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [8] =&gt; breaking benjamin</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">    [9] =&gt; breakup</span></span></span>
+<span class="pl-s1"><span class="pl-c"><span class="pl-ii">)</span></span></span>
+<span class="pl-s1"><span class="pl-c">*/</span></span></pre></div>
+
+<h3>
+<a id="17-ip-grabber" class="anchor" href="#17-ip-grabber" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>17. IP Grabber</h3>
+
+<p>Grabs the user's IP address. Simple but useful.</p>
+
+<div class="highlight highlight-text-html-php"><pre><span class="pl-s1"><span class="pl-c1">Trickster</span><span class="pl-k">::</span>ip();</span>
+<span class="pl-s1"><span class="pl-c">// Output: 192.168.145.35</span></span></pre></div>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/secrethash/trickster/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/secrethash/trickster/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/secrethash/trickster"></a> is maintained by <a href="https://github.com/secrethash">secrethash</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
