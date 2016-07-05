@@ -19,7 +19,7 @@ class TricksterServiceProvider extends ServiceProvider
     public function boot()
     {
         // loading the routes
-        // require __DIR__ . "/HTTP/routes.php"; 
+        // require __DIR__ . "/Http/routes.php";
         $this->publishes([
         __DIR__.'./config/trickster.php' => config_path('trickster.php'),
         ]);       
@@ -35,9 +35,11 @@ class TricksterServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
         __DIR__.'./config/trickster.php', 'trickster'
         );
+        include __DIR__ . "/Http/routes.php";
+        $this->app->make('Secrethash\Trickster\Http\TricksController');
         //
         $this->app->bind('trickster', function($app) {
-            return new Trickster;
+            return new Http\TricksController;
         });
     }
 
