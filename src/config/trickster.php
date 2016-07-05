@@ -60,7 +60,7 @@ return array(
             ),
         'wikipedia'  => array(
             'askWiki'       =>  'http://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1'
-            ), // For file driver
+            ),
         'facebook'   => array(
             'social'        =>  'https://graph.facebook.com/?ids=%s'
             ),
