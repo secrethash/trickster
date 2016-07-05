@@ -109,7 +109,7 @@ class TricksController extends Controller
      * @param  string $email Email address for validate
      * @return bool          Return true when email is valid and return false when email is invalid
      */
-    public function validateEmail($email)
+    public function emailValid($email)
     {
         if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
             return true;
@@ -142,38 +142,46 @@ class TricksController extends Controller
      *                           false for only first time e.g: 6 months ago
      * @return mixed             Return converted date and time in xx time ago format
      */
-    public function timeAgo($datetime, $full = false)
-    {
-        if (!empty($datetime)) {
-            $now  = new DateTime;
-            $ago  = new DateTime($datetime);
-            $diff = $now->diff($ago);
-
-            $diff->w = floor($diff->d / 7);
-            $diff->d -= $diff->w * 7;
-
-            $string = array(
-                'y' => 'year',
-                'm' => 'month',
-                'w' => 'week',
-                'd' => 'day',
-                'h' => 'hour',
-                'i' => 'minute',
-                's' => 'second',
-            );
-
-            foreach ($string as $k => &$v) {
-                if ($diff->$k) {
-                    $v = $diff->$k . ' ' . $v . ($diff->$k > 1 ? 's' : '');
-                } else {
-                    unset($string[$k]);
-                }
+    public function timeAgo($date)
+    { 
+        if(!empty($date)) {
+        
+            $periods         = array("second", "minute", "hour", "day", "week", "month", "year", "decade");
+            $lengths         = array("60","60","24","7","4.35","12","10");
+            
+            $now             = time();
+            $unix_date         = strtotime($date);
+            
+               // check validity of date
+            if(empty($unix_date)) {    
+                return "Bad date";
             }
 
-            if (!$full) $string = array_slice($string, 0, 1);
-            return $string ? implode(', ', $string) . ' ago' : 'just now';
+            // is it future date or past date
+            if($now > $unix_date) {    
+                $difference     = $now - $unix_date;
+                $tense         = "ago";
+                
+            } else {
+                $difference     = $unix_date - $now;
+                $tense         = "from now";
+            }
+            
+            for($j = 0; $difference >= $lengths[$j] && $j < count($lengths)-1; $j++) {
+                $difference /= $lengths[$j];
+            }
+            
+            $difference = round($difference);
+            
+            if($difference != 1) {
+                $periods[$j].= "s";
+            }
+            
+            return "$difference $periods[$j] {$tense}";
         }
-        return false;
+        else {
+            return False;
+        }
     }
 
     /**
@@ -201,7 +209,15 @@ class TricksController extends Controller
                 case 'facebook':
                     $result = $this->_socialCurl($url_data);
 
-                    return $result[$url]['shares'];
+                    if (!$result[$url]['shares'])
+                    {
+                        return '0';
+                    }
+                    else
+                    {
+                        return $result[$url]['shares'];
+                    }
+                    // print_r($result);
                     break;
                 
                 default:
@@ -429,15 +445,26 @@ class TricksController extends Controller
             $ch = curl_init(sprintf($this->_wikiApiUrl, $keyword));
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
             $result = curl_exec($ch);
+            $error = curl_errno($ch);
             curl_close($ch);
 
-            $xml = simplexml_load_string($result);
-            if ((string)$xml->Section->Item->Description) {
-                return array(
-                    (string)$xml->Section->Item->Text,
-                    (string)$xml->Section->Item->Description,
-                    (string)$xml->Section->Item->Url
-                );
+            // $xml = simplexml_load_string($result);
+            // if ((string)$xml->Section->Item->Description) {
+            //     return array(
+            //         (string)$xml->Section->Item->Text,
+            //         (string)$xml->Section->Item->Description,
+            //         (string)$xml->Section->Item->Url
+            //     );
+            echo $result;
+            if ($result)
+            {
+                $json = json_decode($result);
+                if ($json->description) {
+                    return array($json->Text, $json->Description, $json->Url);
+                }
+            }
+            else {
+               echo $error;
             }
             return false;
         }
