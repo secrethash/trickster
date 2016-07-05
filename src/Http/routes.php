@@ -10,7 +10,7 @@
 // Binding Facade Trickster
 App::bind('trickster', function()
 {
-	return new Secrethash\Trickster\Tricks;
+	return new Secrethash\Trickster\TricksController;
 });
 
 
