@@ -203,7 +203,8 @@ BB code engine trick is a little distinctive. It's actually amazing. It makes ea
 // If implemented directly in the  Blade View File.
 {!! Trickster::bbcode($user->bio) !!}
 ```
-The Supported BB Codes Currently are: 
+***The Supported BB Codes Currently are: ***
+
 |           BB Code    |   Description   | Converted HTML |
 |----------------------|-----------------|----------------|
 |          [b]...[/b]  |    Bold Text    | `<b>...</b>`   |
