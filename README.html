@@ -14,20 +14,16 @@
 <h2 id="why-trickster">Why Trickster?</h2>
 
 <ul>
-<li>Trickster is an Laravel plugin that makes Laravel Fun.</li>
+<li>Trickster is an Laravel package that makes Laravel Fun.</li>
 <li>Trickster provides tricks that makes coding with Laravel easy.</li>
-<li>With <strong>Trickster</strong> inside <strong>Laravel</strong>, your app will become a <strong>Gambit</strong>. :P</li>
+<li>With <strong>Trickster</strong> inside your <strong>Laravel framework</strong>, your app will become a <strong>Gambit</strong>. :-P</li>
 </ul>
 
 
 
 <h2 id="installation">Installation</h2>
 
-<p>Installing Trickster is easy. Just add the below line to your Laravel’s composer.json file.</p>
-
-<p><code>"secrethash/trickster": "1.2.*"</code></p>
-
-<p>or just type the command: <br>
+<p>Installing Trickster is easy. Just type the command: <br>
 <code>composer require secrethash/trickster</code></p>
 
 
@@ -39,6 +35,8 @@
 <li><strong>cURL</strong></li>
 <li><strong>PHP 5.4.x</strong></li>
 </ul>
+
+
 
 <h2 id="usage">Usage</h2>
 
@@ -140,6 +138,8 @@
 <code>{!! Trickster::bbcode($user-&gt;bio) !!}</code> <br>
 or <br>
 <code>{{ Trickster::truncator($blog-&gt;desc, '150', '(...summary)') }}</code></p>
+
+
 
 <h2 id="tricksters-tricks">Trickster’s Tricks</h2>
 
@@ -456,6 +456,8 @@ Array
     [upload_date] =&gt; 2011-11-05 02:11:05
 )</code></pre>
 
+
+
 <h3 id="14-wikipedia-grabber">14. Wikipedia Grabber</h3>
 
 <p>This simple trick helps you to get the <strong>Wikipedia version definition</strong> of a particular keyword. Just pass the key word as the input to this function of <code>Trickster</code> and get the definition right away as return string. Remember, like the above function this one also returns an array as it returns not only definition but also the input value and the link to Wikipedia, where that definition is. The example is well explained below:</p>
@@ -463,6 +465,8 @@ Array
 
 
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::wiki(<span class="hljs-string">'github'</span>);</code></pre>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">// Returns</span>
 <span class="hljs-comment">/**
@@ -481,6 +485,8 @@ Array
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$trick</span> = Trickster::wiki(<span class="hljs-string">'github'</span>);
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$trick</span>[<span class="hljs-number">1</span>];</code></pre>
 
+
+
 <h3 id="15-url-shortener">15. URL Shortener</h3>
 
 <p>URL shortener make your url short using the Google’s goo.gl API and TinyURL API. Make your life simple with just one liner URL Shortener that can shorten the URL using 2 distinctive APIs.</p>
@@ -492,6 +498,8 @@ Trickster::shortenUrl(<span class="hljs-string">'http://github.io'</span>, <span
 
 <span class="hljs-comment">// TinyURL URL Shortener</span>
 Trickster::shortenUrl(<span class="hljs-string">'http://github.com'</span>, <span class="hljs-string">'tinyurl'</span>);</code></pre>
+
+
 
 <h3 id="16-suggest">16. Suggest</h3>
 
@@ -520,6 +528,8 @@ Array
     [9] =&gt; breakup
 )
 */</span></code></pre>
+
+
 
 <h3 id="17-ip-grabber">17. IP Grabber</h3>
 
