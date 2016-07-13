@@ -27,9 +27,6 @@ class TricksterServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->mergeConfigFrom(
-        __DIR__.'./config/trickster.php', 'trickster'
-        );
         $this->app->make('Secrethash\Trickster\Trickster');
 
         $this->bindFacade();
