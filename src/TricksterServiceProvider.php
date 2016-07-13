@@ -9,6 +9,7 @@ use Symfony\Component\Finder\Finder;
 use Illuminate\Filesystem\Filesystem;
 
 
+
 class TricksterServiceProvider extends ServiceProvider
 {
     /**
@@ -35,11 +36,15 @@ class TricksterServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
         __DIR__.'./config/trickster.php', 'trickster'
         );
-        include __DIR__ . "/Http/routes.php";
-        $this->app->make('Secrethash\Trickster\Http\TricksController');
-        //
+        $this->app->make('Secrethash\Trickster\Trickster');
+
+        $this->bindFacade();
+
+    }
+
+    private function bindFacade() {
         $this->app->bind('trickster', function($app) {
-            return new Http\TricksController;
+            return new Trickster();
         });
     }
 
