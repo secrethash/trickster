@@ -1,13 +1,9 @@
 <?php
 
-namespace Secrethash\Trickster\Http;
+namespace Secrethash\Trickster;
 
-use Illuminate\Http\Request;
 
-use App\Http\Requests;
-use App\Http\Controllers\Controller;
-
-class TricksController extends Controller
+class Trickster
 {
     /**
      * Twitter api url for get tweets
