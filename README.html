@@ -9,7 +9,44 @@
 </head>
 <body><div class="container"><h1 id="trickster">Trickster</h1>
 
-
+<p><div class="toc">
+<ul>
+<li><a href="#trickster">Trickster</a><ul>
+<li><a href="#why-trickster">Why Trickster?</a></li>
+<li><a href="#installation">Installation</a></li>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#1-service-provider">1. Service Provider</a></li>
+<li><a href="#2-facade">2. Facade</a></li>
+<li><a href="#3-configuration">3. Configuration</a></li>
+<li><a href="#4-ready-steady-go">4. Ready, Steady, GO!</a></li>
+</ul>
+</li>
+<li><a href="#tricksters-tricks">Trickster’s Tricks</a><ul>
+<li><a href="#1-truncator">1. Truncator</a></li>
+<li><a href="#2-email-validator">2. Email Validator</a></li>
+<li><a href="#3-slug-converter">3. Slug Converter</a></li>
+<li><a href="#4-youtube-embed">4. YouTube Embed</a></li>
+<li><a href="#5-gravatar-grabber">5. Gravatar Grabber</a></li>
+<li><a href="#6-extension-splitter">6. Extension Splitter</a></li>
+<li><a href="#7-simple-social-analytics">7. Simple Social Analytics</a></li>
+<li><a href="#8-bb-code-engine">8. BB Code Engine</a></li>
+<li><a href="#9-tags-sweeper">9. Tags Sweeper</a></li>
+<li><a href="#10-time-ago">10. Time Ago</a></li>
+<li><a href="#11-cipher">11. Cipher</a></li>
+<li><a href="#12-vimeo-video-embed">12. Vimeo Video Embed</a></li>
+<li><a href="#13-video-info-grabber">13. Video Info Grabber</a></li>
+<li><a href="#14-wikipedia-grabber">14. Wikipedia Grabber</a></li>
+<li><a href="#15-url-shortener">15. URL Shortener</a></li>
+<li><a href="#16-suggest">16. Suggest</a></li>
+<li><a href="#17-ip-grabber">17. IP Grabber</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</p>
 
 <h2 id="why-trickster">Why Trickster?</h2>
 
@@ -284,40 +321,36 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 
 <h3 id="7-simple-social-analytics">7. Simple Social Analytics</h3>
 
-<p>This trick eases your life, seriously. Simple and easy way to show your social counts with Trickster. Trickster’s Simple Social Analytics shows the number of Like or Tweets over a specific URL when the trick is executed. </p>
+<p>This trick eases your life, seriously. Simple and easy it is to show your social counts with Trickster. Trickster’s Simple Social Analytics shows the number of Shares or Comments over a specific URL on Facebook when the trick is executed.</p>
+
+<blockquote>
+  <p>Note: Twitter has been deprecated. As of 20th November 2015 there’s no Tweet count API. <a href="https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform">Know More</a></p>
+</blockquote>
 
 <ul>
 <li>Supported Social Networks: <br>
 <ul><li>Facebook</li>
-<li>Twitter</li></ul></li>
+<li><del>Twitter</del> (deprecated)</li></ul></li>
 <li>Returned Strings <br>
 <ul><li>Facebook <br>
-<ul><li>Likes</li></ul></li>
-<li>Twitter <br>
-<ul><li>Tweets</li></ul></li></ul></li>
+<ul><li>Share Count</li>
+<li>Comment Count</li></ul></li>
+<li><del>Twitter</del> <br>
+<ul><li><del>Tweets</del></li></ul></li></ul></li>
 </ul>
 
-
-
-<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$likes</span> = Trickster::social(<span class="hljs-string">'facebook'</span>, <span class="hljs-string">'http://github.com/secrethash'</span>);
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$likes</span>.<span class="hljs-string">' Likes on Github.com/secrethash'</span>;</code></pre>
-
-<blockquote>
-  <p>Output: 95457821 Likes on Github.com/secrethash</p>
-</blockquote>
-
-
-
-<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$tweets</span> = Trickster::social(<span class="hljs-string">'twitter'</span>, <span class="hljs-string">'http://github.com/secrethash'</span>);
-<span class="hljs-keyword">echo</span> <span class="hljs-variable">$tweets</span>.<span class="hljs-string">' Tweets on Github.com/secrethash'</span>;</code></pre>
+<pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$fbAnalytics</span> = Trickster::social(<span class="hljs-string">'facebook'</span>, <span class="hljs-string">'http://github.com/secrethash'</span>);
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$fbAnalytics</span>[<span class="hljs-string">'share_count'</span>].<span class="hljs-string">' Shares of Github.com/secrethash'</span>;
+<span class="hljs-keyword">echo</span> <span class="hljs-variable">$fbAnalytics</span>[<span class="hljs-string">'comment_count'</span>].<span class="hljs-string">' Comments on Github.com/secrethash'</span>;</code></pre>
 
 <blockquote>
-  <p>Output: 54859562 Tweets on Github.com/secrethash</p>
+  <p>Output 1: 95457821 Shares of Github.com/secrethash <br>
+  Output 2: 59865231 Comments on Github.com/secrethash</p>
 </blockquote>
 
-<p>Simple?</p>
+<p>(Don’t be bothered about the numbers, they are just random :-P )</p>
 
-
+<p>BTW Simple, right?</p>
 
 <h3 id="8-bb-code-engine">8. BB Code Engine</h3>
 
@@ -384,6 +417,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
   <td><code>&lt;a href="#url"&gt;Google&lt;/a&gt;</code></td>
 </tr>
 </tbody></table>
+
+
 
 
 <h3 id="9-tags-sweeper">9. Tags Sweeper</h3>

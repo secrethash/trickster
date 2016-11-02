@@ -196,24 +196,24 @@ class Trickster
             }
 
             switch ($network) {
-                case 'twitter':
+                /*case 'twitter':
                     $result = $this->_socialCurl($url_data);
 
                     return $result['count'];
-                    break;
+                    break;*/ // Deprecated
 
                 case 'facebook':
                     $result = $this->_socialCurl($url_data);
 
-                    if (!$result[$url]['shares'])
+                    if (!$result[$url]['share'])
                     {
                         return '0';
                     }
                     else
                     {
-                        return $result[$url]['shares'];
+                        return $result[$url]['share'];
                     }
-                    // print_r($result);
+                    // print_r($result); // Classic Debugger :P
                     break;
                 
                 default:

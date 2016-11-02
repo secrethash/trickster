@@ -171,30 +171,31 @@ Trickster::getExtension('really-funny.image.jpg');
 ***Finished? Not Yet!***
 
 ###7. Simple Social Analytics
-This trick eases your life, seriously. Simple and easy way to show your social counts with Trickster. Trickster's Simple Social Analytics shows the number of Like or Tweets over a specific URL when the trick is executed. 
+This trick eases your life, seriously. Simple and easy it is to show your social counts with Trickster. Trickster's Simple Social Analytics shows the number of Shares or Comments over a specific URL on Facebook when the trick is executed.
+
+>Note: Twitter has been deprecated. As of 20th November 2015 there's no Tweet count API. [Know More](https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform)
 
 * Supported Social Networks:
  + Facebook
- + Twitter
+ + ~~Twitter~~ (deprecated)
 * Returned Strings
  + Facebook
-      - Likes
- + Twitter
-      - Tweets
+      - Share Count
+      - Comment Count
+ + ~~Twitter~~
+      - ~~Tweets~~
 
 ```php
-$likes = Trickster::social('facebook', 'http://github.com/secrethash');
-echo $likes.' Likes on Github.com/secrethash';
+$fbAnalytics = Trickster::social('facebook', 'http://github.com/secrethash');
+echo $fbAnalytics['share_count'].' Shares of Github.com/secrethash';
+echo $fbAnalytics['comment_count'].' Comments on Github.com/secrethash';
 ```
->Output: 95457821 Likes on Github.com/secrethash
+>Output 1: 95457821 Shares of Github.com/secrethash
+>Output 2: 59865231 Comments on Github.com/secrethash
 
-```php
-$tweets = Trickster::social('twitter', 'http://github.com/secrethash');
-echo $tweets.' Tweets on Github.com/secrethash';
-```
->Output: 54859562 Tweets on Github.com/secrethash
+(Don't be bothered about the numbers, they are just random :-P )
 
-Simple?
+BTW Simple, right?
 
 ###8. BB Code Engine
 BB code engine trick is a little distinctive. It's actually amazing. It makes easy to convert the BB Code to HTML format. Easy to initialize, it makes it unique.
