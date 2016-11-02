@@ -4,16 +4,6 @@ return array(
 
     /*
      |--------------------------------------------------------------------------
-     | Google API KEY
-     |--------------------------------------------------------------------------
-     |
-     | Google API key for URL Shortener. Get the active api key from Google.
-     | Login to Google Console<?php
-
-return array(
-
-    /*
-     |--------------------------------------------------------------------------
      | API KEY(s)
      |--------------------------------------------------------------------------
      | * API keys for some of the Tricks to work.
@@ -49,6 +39,7 @@ return array(
      |     - URL SHORTENER:     API url for Url Shortener
      |
      */
+     
     'apiUrl' => array(
         'google'     => array(
             'urlShorten'    =>  'https://www.googleapis.com/urlshortener/v1/url',
