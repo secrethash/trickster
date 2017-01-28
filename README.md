@@ -1,30 +1,61 @@
-#Trickster
+# Trickster
+
+
+*   [Trickster](#trickster)
+    *   [Why Trickster?](#why-trickster)
+    *   [Installation](#installation)
+    *   [Requirements](#requirements)
+    *   [Usage](#usage)
+        *   [1. Service Provider](#1-service-provider)
+        *   [2. Facade](#2-facade)
+        *   [3. Configuration](#3-configuration)
+        *   [4. Ready, Steady, GO!](#4-ready-steady-go)
+    *   [Trickster’s Tricks](#tricksters-tricks)
+	    *   [1. Truncator](#1-truncator)
+        *   [2. Email Validator](#2-email-validator)
+        *   [3. Slug Converter](#3-slug-converter)
+        *   [4. YouTube Embed](#4-youtube-embed)
+        *   [5. Gravatar Grabber](#5-gravatar-grabber)
+        *   [6. Extension Splitter](#6-extension-splitter)
+        *   [7. Simple Social Analytics](#7-simple-social-analytics)
+        *   [8. BB Code Engine](#8-bb-code-engine)
+        *   [9. Tags Sweeper](#9-tags-sweeper)
+        *   [10. Time Ago](#10-time-ago)
+        *   [11. Cipher](#11-cipher)
+        *   [12. Vimeo Video Embed](#12-vimeo-video-embed)
+        *   [13. Video Info Grabber](#13-video-info-grabber)
+        *   [14. Wikipedia Grabber](#14-wikipedia-grabber)
+        *   [15. URL Shortener](#15-url-shortener)
+        *   [16. Suggest](#16-suggest)
+        *   [17. IP Grabber](#17-ip-grabber)
+        *   [18. Currency Converter](#18-currency-converter)
+
 
 ## Why Trickster?
 * Trickster is an Laravel package that makes Laravel Fun.
 * Trickster provides tricks that makes coding with Laravel easy.
 * With **Trickster** inside your **Laravel framework**, your app will become a **Gambit**. :-P
 
-##Installation
+## Installation
 Installing Trickster is easy. Just type the command:
 `composer require secrethash/trickster`
 
-##Requirements
+## Requirements
 * **Laravel 5.x**
 * **cURL**
 * **PHP 5.4.x**
 
-##Usage
+## Usage
 To start using ***Trickster***, you will be needed to set it up first. Follow the below steps to setup **Trickster**:
 
-###1. Service Provider
+### 1. Service Provider
 You will be needing to add the Trickster Service Provider in your `app.php` which is inside the `config` directory.
 
 * Open `config\app.php`
 * Find `'providers'`
 * At the last of this array in `Application Service Providers` add `Secrethash\Trickster\TricksterServiceProvider::class,`
 
-###2. Facade
+### 2. Facade
 To use **Trickster** flexibly, you need to add the Facade also. Facade will let you use Trickster directly. All you will need to do is add `use Trickster;` at the head of the controller below namespace and use it by `Trickster::trickName();`
 
 **Lets Add the `Trickster` Facade:**
@@ -33,14 +64,14 @@ To use **Trickster** flexibly, you need to add the Facade also. Facade will let 
 * Find `'aliases'` array.
 * At the end of this array, add `'Trickster' => Secrethash\Trickster\Facade\Trickster::class,`
 
-###3. Configuration
+### 3. Configuration
 First of all you will need to run the following command in your console:
 `php artisan vendor:publish --provider="Secrethash\Trickster\TricksterServiceProvider"`
 >This command will publish the `trickster.php` configuration file for Trickster to your application default `config` directory.
 
 From `config\trickster.php` you can edit the default configurations.
 
-###4. Ready, Steady, GO!
+### 4. Ready, Steady, GO!
 ***You are almost done. Now what to do when you want to use a Trickster's Trick?***
 
 Here is a sample Controller to show you how to add Trickster and Use it:
@@ -95,9 +126,9 @@ or
 `{{ Trickster::truncator($blog->desc, '150', '(...summary)') }}`
 
 
-##Trickster's Tricks
+## Trickster's Tricks
 
-###1. Truncator
+### 1. Truncator
 Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses(...) or desired line at the end. For example:
 
 >_The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those inter **(read more...)**_
@@ -108,14 +139,14 @@ Trickster::truncator('Supplied text is written here, can also be given in a vari
 // Output: Supplied text is written here, (read more...)
 ```
 
-###2. Email Validator
+### 2. Email Validator
 Email Validator gives you the power of validating the email address by just a simple line of code: 
 ``` php
 Trickster::emailValid('someone@example.com');
 ``` 
 With Trickster by your side you will not have to write the validation code again and again. Just mention the Facade of Trickster an the validation function that's it.
 
-###3. Slug Converter
+### 3. Slug Converter
 Slug Converter makes your life easy for creating search engine friendly slug for your url.
 >For example: **Text**: _Are search engines friendly to search engines?_
 >>**SLUGish URL**: _example.com/are-search-engines-friendly-to-search-engines_
@@ -130,7 +161,7 @@ $slug = 'Are search engines friendly to search engines?';
 $slug = Trickster::slug($slug); // That's it!
 ```
 
-###4. YouTube Embed
+### 4. YouTube Embed
 YouTube Embedding can never be more easier! Embed YouTube Videos without writing lines of code just tell the Trickster about it. Call Trickster by:
 ```php
 Trickster::youtube('VIDEO URL', 'FRAME WIDTH', 'FRAME HEIGHT', 'FRAME THEME');
@@ -147,7 +178,7 @@ Trickster::youtube('VIDEO URL');
 | Frame Theme| **dark** or **light** theme   |    NO    |     dark  |
 
 
-###5. Gravatar Grabber
+### 5. Gravatar Grabber
 This amazing trick helps you to easily get the gravatar in the desired **size**, with desired **rating**. Not only that, but it also helps you to set the desired **default image** in case the grabbing fails. Not yet finished, two more amazing features; allows you to **set the option of returning only the url of the gravatar or even the gravatar with the whole `<img />` tag** and in case you want Trickster to return the whole _img_ tag then you also have the option of **setting desired attributes in an array _(ex. below)_**.
 
 ```php
@@ -162,7 +193,7 @@ Trickster::gravatar('example@email.com', '200', 'monsterid', 'r', 'true', array(
 + **`<img />`**: Do you want full HTML image tag? This parameter should be supplied with boolean value (TRUE/FALSE). _DEFAULT: false_, _NOT REQUIRED_.
 + **Key-Value Attributes**: An array is to be passed to defined any special attributes required by the html image tag, if requested. _NO DEFAULT_, _NOT REQUIRED_
 
-###6. Extension Splitter
+### 6. Extension Splitter
 This simple trick splits the file extension of the file supplied as the parameter and returns it. Simply call the Trickster and provide the full file name, the trick will split the file ext. from the file name and return it.
 
 ```php
@@ -170,7 +201,7 @@ Trickster::getExtension('really-funny.image.jpg');
 ```
 ***Finished? Not Yet!***
 
-###7. Simple Social Analytics
+### 7. Simple Social Analytics
 This trick eases your life, seriously. Simple and easy it is to show your social counts with Trickster. Trickster's Simple Social Analytics shows the number of Shares or Comments over a specific URL on Facebook when the trick is executed.
 
 >Note: Twitter has been deprecated. As of 20th November 2015 there's no Tweet count API. [Know More](https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform)
@@ -197,7 +228,7 @@ echo $fbAnalytics['comment_count'].' Comments on Github.com/secrethash';
 
 BTW Simple, right?
 
-###8. BB Code Engine
+### 8. BB Code Engine
 BB code engine trick is a little distinctive. It's actually amazing. It makes easy to convert the BB Code to HTML format. Easy to initialize, it makes it unique.
 
 ```php
@@ -218,14 +249,14 @@ BB code engine trick is a little distinctive. It's actually amazing. It makes ea
 |            [br/]     | Line Break  |  `<br/>` |
 |[url=URL]ALT[/url]    | Adding a URL. Where: URL is the Target Link and ALT is the URL text to be shown. | `<a href="#url">Google</a>` |
 
-###9. Tags Sweeper
+### 9. Tags Sweeper
 Tag sweeper is a unwanted tag remover trick. It easily removes the unwanted script tags from the provided string. In accordance to the BB Code Engine,  Tag Sweeper Cleans the HTML `<script></script>` code and leaves the BB Code making the supplied text **Clean and Safe**.
 
 ```php
 Trickster::clean($string);
 ```
 
-###10. Time Ago
+### 10. Time Ago
 **Time ago** is a wonderful way of displaying the post time. You can use the Trickster's Facade `Trickster` to convert easily the provided Time & Date to Time Ago. The default format for this is `Y-m-d H:i:s`. In simple words `1996-07-30 21:52:30`, `Year-Month-Day Hour:Min:Sec`
 >For example: _This repo was created 2 months ago_
 
@@ -234,14 +265,14 @@ Trickster::clean($string);
 Trickster::timeAgo('1996-07-30 21:52:30');
 ```
 
-###11. Cipher
+### 11. Cipher
 Cipher enables you to encrypt any provided string of plain text to convert into Encrypted text form. Any PHP supported algorithm can be provided to **Cipher** to encrypt it. You can also encrypt a string and add a **Salt** to make it more secure. One will need the **Salt** to decrypt it.
 
 ```php
 Trickster::encryptString('SHA1', 'Text to Encrypt', 'Desired Salt');
 ```
 
-###12. Vimeo Video Embed
+### 12. Vimeo Video Embed
 Vimeo Video Embed, same as YouTube Video Embed. It needs the video link of Vimeo Video as an input. Same as Youtube Embed you can set custom width and height in it also. 
 
 ```php
@@ -250,7 +281,7 @@ Trickster::vimeo('https://vimeo.com/30626474', '400', '250');
 Trickster::vimeo('https://vimeo.com/30626474');
 ```
 
-###13. Video Info Grabber
+### 13. Video Info Grabber
 A great way of getting the video information from **YouTube and Vimeo**. _Video Info Grabber_ makes it easy for you to grab the video info from link of YouTube & Vimeo video portals and return an array containing the video info. Returning as an array gives you the flexibility to use the info as you want.
 ```php
 Trickster::getVideoInfo('https://vimeo.com/30626474');
@@ -267,7 +298,7 @@ Array
 )
 ```
 
-###14. Wikipedia Grabber
+### 14. Wikipedia Grabber
 This simple trick helps you to get the **Wikipedia version definition** of a particular keyword. Just pass the key word as the input to this function of `Trickster` and get the definition right away as return string. Remember, like the above function this one also returns an array as it returns not only definition but also the input value and the link to Wikipedia, where that definition is. The example is well explained below:
 
 ```php
@@ -275,14 +306,13 @@ Trickster::wiki('github');
 ```
 ```php
 // Returns
-/**
 Array
 (
     [0] => GitHub
     [1] => GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features. 
     [2] => http://en.wikipedia.org/wiki/GitHub
 )
-*/
+
 ```
 So if you only want to display the definition of **GitHub** as shown in the above example:
 ```php
@@ -299,7 +329,7 @@ Trickster::shortenUrl('http://github.io', 'google');
 Trickster::shortenUrl('http://github.com', 'tinyurl');
 ```
 
-###16. Suggest
+### 16. Suggest
 Suggest uses the Google Suggest API to get the keyword suggestions. Just provide the input of the keyword that you want the suggestions for as the first parameter and the results will be generated and returned as an array.
 ```php
 Trickster::suggest('break');
@@ -325,9 +355,45 @@ Array
 ```
 
 
-###17. IP Grabber
+### 17. IP Grabber
 Grabs the user's IP address. Simple but useful.
 ```php
 Trickster::ip();
 // Output: 192.168.145.35
+```
+
+
+### 18. Currency Converter
+With the help of ***CURL*** and ***Google*** the currency is converted using the live exchange rate. Trickster's `Trickster::currencyConvert()` can convert currency within seconds using the Currency Codes.
+
+The Currency Converter excepts three Parameters with last an optional one.
+
+Parameters & Inputs:
+
+|	Parameters	|	  Description	  |	Value	| Default  |Accepts|
+|---------------|---------------------|---------|----------|-----------|
+|	  Amount	|The amount to convert| Integer |**------**|Currency Amount|
+|	   From		|Convert Currency From|	String	|**------**|Currency Code|
+|	    To		|Convert Currency To  |	String	|  **INR** |Currency Code|
+|---------------|---------------------|---------|----------|--------------|
+
+> **INR** is the Currency Code for **Indian National Rupee**
+
+```php
+	/**
+	* Sample Code
+	* @param $amount init Amount to convert
+	* @param $from string Currency Code
+	* @param $to string Currency Code
+	* @return string - converted amount
+	**/
+	
+	$amount = 100;
+	$from = "USD";
+	$to = "INR";
+	$convert = Trickster::currencyConvert($amount, $from, $to);
+	echo $convert;
+```
+```
+output: 60,000 //In INR (Just an Example).
 ```
