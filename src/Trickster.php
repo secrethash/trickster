@@ -564,6 +564,41 @@ class Trickster
         return false;
     }
 
+
+
+    /**
+     * This function converts the currency in desired form.
+     * @access public
+     * @param  init $amount Amount to be converted
+     * @param  string $from Currency Code to convert "from"
+     * @param  string $to Currency code to convert "to" Default=INR
+     * @return string      Return json data
+     */
+    public function currencyConvert($amount, $from, $to='INR') {
+     
+        
+        $url = "http://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
+
+        $req = curl_init();
+        $timeout = 0;
+        curl_setopt ($req, CURLOPT_URL, $url);
+        curl_setopt ($req, CURLOPT_RETURNTRANSFER, 1);
+
+        curl_setopt ($req, CURLOPT_USERAGENT,
+                     "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+        curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $rawdata = curl_exec($req);
+        curl_close($req);
+        $data = explode('bld>', $rawdata);
+        $data = explode($to, $data[1]);
+
+        return round($data[0], 2);
+
+
+
+    }
+
+
     /**
      * This function used for return tweets and likes with curl
      * @access private
