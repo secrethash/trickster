@@ -337,7 +337,7 @@ Trickster::suggest('break');
 ```php
 // Output
 
-/**
+
 Array
 (
     [0] => breaking
@@ -351,7 +351,6 @@ Array
     [8] => breaking benjamin
     [9] => breakup
 )
-*/
 ```
 
 
@@ -375,7 +374,7 @@ Parameters & Inputs:
 |	  Amount	|The amount to convert| Integer |**------**|Currency Amount|
 |	   From		|Convert Currency From|	String	|**------**|Currency Code|
 |	    To		|Convert Currency To  |	String	|  **INR** |Currency Code|
-|---------------|---------------------|---------|----------|--------------|
+
 
 > **INR** is the Currency Code for **Indian National Rupee**
 

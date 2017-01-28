@@ -9,21 +9,18 @@
 </head>
 <body><div class="container"><h1 id="trickster">Trickster</h1>
 
-<p><div class="toc">
 <ul>
-<li><a href="#trickster">Trickster</a><ul>
-<li><a href="#why-trickster">Why Trickster?</a></li>
+<li><a href="#trickster">Trickster</a> <br>
+<ul><li><a href="#why-trickster">Why Trickster?</a></li>
 <li><a href="#installation">Installation</a></li>
 <li><a href="#requirements">Requirements</a></li>
-<li><a href="#usage">Usage</a><ul>
-<li><a href="#1-service-provider">1. Service Provider</a></li>
+<li><a href="#usage">Usage</a> <br>
+<ul><li><a href="#1-service-provider">1. Service Provider</a></li>
 <li><a href="#2-facade">2. Facade</a></li>
 <li><a href="#3-configuration">3. Configuration</a></li>
-<li><a href="#4-ready-steady-go">4. Ready, Steady, GO!</a></li>
-</ul>
-</li>
-<li><a href="#tricksters-tricks">Trickster’s Tricks</a><ul>
-<li><a href="#1-truncator">1. Truncator</a></li>
+<li><a href="#4-ready-steady-go">4. Ready, Steady, GO!</a></li></ul></li>
+<li><a href="#tricksters-tricks">Trickster’s Tricks</a> <br>
+<ul><li><a href="#1-truncator">1. Truncator</a></li>
 <li><a href="#2-email-validator">2. Email Validator</a></li>
 <li><a href="#3-slug-converter">3. Slug Converter</a></li>
 <li><a href="#4-youtube-embed">4. YouTube Embed</a></li>
@@ -40,14 +37,10 @@
 <li><a href="#15-url-shortener">15. URL Shortener</a></li>
 <li><a href="#16-suggest">16. Suggest</a></li>
 <li><a href="#17-ip-grabber">17. IP Grabber</a></li>
-<li><a href="#18-currency-converter">18. Currency Converter</a></li>
+<li><a href="#18-currency-converter">18. Currency Converter</a></li></ul></li></ul></li>
 </ul>
-</li>
-</ul>
-</li>
-</ul>
-</div>
-</p>
+
+
 
 <h2 id="why-trickster">Why Trickster?</h2>
 
@@ -64,6 +57,8 @@
 <p>Installing Trickster is easy. Just type the command: <br>
 <code>composer require secrethash/trickster</code></p>
 
+
+
 <h2 id="requirements">Requirements</h2>
 
 <ul>
@@ -72,9 +67,13 @@
 <li><strong>PHP 5.4.x</strong></li>
 </ul>
 
+
+
 <h2 id="usage">Usage</h2>
 
 <p>To start using <strong><em>Trickster</em></strong>, you will be needed to set it up first. Follow the below steps to setup <strong>Trickster</strong>:</p>
+
+
 
 <h3 id="1-service-provider">1. Service Provider</h3>
 
@@ -85,6 +84,8 @@
 <li>Find <code>'providers'</code></li>
 <li>At the last of this array in <code>Application Service Providers</code> add <code>Secrethash\Trickster\TricksterServiceProvider::class,</code></li>
 </ul>
+
+
 
 <h3 id="2-facade">2. Facade</h3>
 
@@ -98,6 +99,8 @@
 <li>At the end of this array, add <code>'Trickster' =&gt; Secrethash\Trickster\Facade\Trickster::class,</code></li>
 </ul>
 
+
+
 <h3 id="3-configuration">3. Configuration</h3>
 
 <p>First of all you will need to run the following command in your console: <br>
@@ -109,11 +112,15 @@
 
 <p>From <code>config\trickster.php</code> you can edit the default configurations.</p>
 
+
+
 <h3 id="4-ready-steady-go">4. Ready, Steady, GO!</h3>
 
 <p><strong><em>You are almost done. Now what to do when you want to use a Trickster’s Trick?</em></strong></p>
 
 <p>Here is a sample Controller to show you how to add Trickster and Use it:</p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-preprocessor">&lt;?php</span>
 
@@ -167,6 +174,8 @@ or <br>
 
 <h2 id="tricksters-tricks">Trickster’s Tricks</h2>
 
+
+
 <h3 id="1-truncator">1. Truncator</h3>
 
 <p>Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses(…) or desired line at the end. For example:</p>
@@ -177,6 +186,8 @@ or <br>
 
 <p>Just call the Trickster and provide it with details of the given parameters.</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::truncator(<span class="hljs-string">'Supplied text is written here, can also be given in a variable; lets leave it simple.'</span>, <span class="hljs-number">30</span>, <span class="hljs-string">'(read more...)'</span>);
 <span class="hljs-comment">// Output: Supplied text is written here, (read more...)</span></code></pre>
 
@@ -185,6 +196,8 @@ or <br>
 <h3 id="2-email-validator">2. Email Validator</h3>
 
 <p>Email Validator gives you the power of validating the email address by just a simple line of code: </p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::emailValid(<span class="hljs-string">'someone@example.com'</span>);</code></pre>
 
@@ -208,6 +221,8 @@ or <br>
 
 <p>It is really very simple with Trickster. Just call Trickster and specify the slug function, provide in the text and Ta-DA!</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::slug(<span class="hljs-string">'Are search engines friendly to search engines?'</span>); <span class="hljs-comment">// Just One Line!</span>
 <span class="hljs-comment">//-&gt; OR</span>
 <span class="hljs-variable">$slug</span> = <span class="hljs-string">'Are search engines friendly to search engines?'</span>;
@@ -218,6 +233,8 @@ or <br>
 <h3 id="4-youtube-embed">4. YouTube Embed</h3>
 
 <p>YouTube Embedding can never be more easier! Embed YouTube Videos without writing lines of code just tell the Trickster about it. Call Trickster by:</p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>, <span class="hljs-string">'FRAME WIDTH'</span>, <span class="hljs-string">'FRAME HEIGHT'</span>, <span class="hljs-string">'FRAME THEME'</span>);
 <span class="hljs-comment">//OR LEAVE EVERYTHING ELSE FOR DEFAULT VALUES, JUST PUT THE LINK</span>
@@ -267,6 +284,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 
 <p>This amazing trick helps you to easily get the gravatar in the desired <strong>size</strong>, with desired <strong>rating</strong>. Not only that, but it also helps you to set the desired <strong>default image</strong> in case the grabbing fails. Not yet finished, two more amazing features; allows you to <strong>set the option of returning only the url of the gravatar or even the gravatar with the whole <code>&lt;img /&gt;</code> tag</strong> and in case you want Trickster to return the whole <em>img</em> tag then you also have the option of <strong>setting desired attributes in an array <em>(ex. below)</em></strong>.</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::gravatar(<span class="hljs-string">'example@email.com'</span>, <span class="hljs-string">'200'</span>, <span class="hljs-string">'monsterid'</span>, <span class="hljs-string">'r'</span>, <span class="hljs-string">'true'</span>, <span class="hljs-keyword">array</span>(<span class="hljs-string">'class'</span>=&gt;<span class="hljs-string">'img-class'</span>, <span class="hljs-string">'key'</span>=&gt;<span class="hljs-string">'value'</span>));</code></pre>
 
 <p><strong>The Parameters Explained:</strong></p>
@@ -285,6 +304,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 <h3 id="6-extension-splitter">6. Extension Splitter</h3>
 
 <p>This simple trick splits the file extension of the file supplied as the parameter and returns it. Simply call the Trickster and provide the full file name, the trick will split the file ext. from the file name and return it.</p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::getExtension(<span class="hljs-string">'really-funny.image.jpg'</span>);</code></pre>
 
@@ -312,6 +333,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 <ul><li><del>Tweets</del></li></ul></li></ul></li>
 </ul>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$fbAnalytics</span> = Trickster::social(<span class="hljs-string">'facebook'</span>, <span class="hljs-string">'http://github.com/secrethash'</span>);
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$fbAnalytics</span>[<span class="hljs-string">'share_count'</span>].<span class="hljs-string">' Shares of Github.com/secrethash'</span>;
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$fbAnalytics</span>[<span class="hljs-string">'comment_count'</span>].<span class="hljs-string">' Comments on Github.com/secrethash'</span>;</code></pre>
@@ -330,6 +353,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 <h3 id="8-bb-code-engine">8. BB Code Engine</h3>
 
 <p>BB code engine trick is a little distinctive. It’s actually amazing. It makes easy to convert the BB Code to HTML format. Easy to initialize, it makes it unique.</p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">// If implemented directly in the  Blade View File.</span>
 {!! Trickster::bbcode(<span class="hljs-variable">$user</span>-&gt;bio) !!}</code></pre>
@@ -398,6 +423,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 
 <p>Tag sweeper is a unwanted tag remover trick. It easily removes the unwanted script tags from the provided string. In accordance to the BB Code Engine,  Tag Sweeper Cleans the HTML <code>&lt;script&gt;&lt;/script&gt;</code> code and leaves the BB Code making the supplied text <strong>Clean and Safe</strong>.</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::clean(<span class="hljs-variable">$string</span>);</code></pre>
 
 
@@ -412,6 +439,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 
 <p><strong>Trick:</strong></p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::timeAgo(<span class="hljs-string">'1996-07-30 21:52:30'</span>);</code></pre>
 
 
@@ -420,6 +449,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 
 <p>Cipher enables you to encrypt any provided string of plain text to convert into Encrypted text form. Any PHP supported algorithm can be provided to <strong>Cipher</strong> to encrypt it. You can also encrypt a string and add a <strong>Salt</strong> to make it more secure. One will need the <strong>Salt</strong> to decrypt it.</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::encryptString(<span class="hljs-string">'SHA1'</span>, <span class="hljs-string">'Text to Encrypt'</span>, <span class="hljs-string">'Desired Salt'</span>);</code></pre>
 
 
@@ -427,6 +458,8 @@ Trickster::youtube(<span class="hljs-string">'VIDEO URL'</span>);</code></pre>
 <h3 id="12-vimeo-video-embed">12. Vimeo Video Embed</h3>
 
 <p>Vimeo Video Embed, same as YouTube Video Embed. It needs the video link of Vimeo Video as an input. Same as Youtube Embed you can set custom width and height in it also. </p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::vimeo(<span class="hljs-string">'https://vimeo.com/30626474'</span>, <span class="hljs-string">'400'</span>, <span class="hljs-string">'250'</span>);
 <span class="hljs-comment">//-&gt; OR, Simple &lt;-//</span>
@@ -437,6 +470,8 @@ Trickster::vimeo(<span class="hljs-string">'https://vimeo.com/30626474'</span>);
 <h3 id="13-video-info-grabber">13. Video Info Grabber</h3>
 
 <p>A great way of getting the video information from <strong>YouTube and Vimeo</strong>. <em>Video Info Grabber</em> makes it easy for you to grab the video info from link of YouTube &amp; Vimeo video portals and return an array containing the video info. Returning as an array gives you the flexibility to use the info as you want.</p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::getVideoInfo(<span class="hljs-string">'https://vimeo.com/30626474'</span>);</code></pre>
 
@@ -458,6 +493,8 @@ Array
 
 <p>This simple trick helps you to get the <strong>Wikipedia version definition</strong> of a particular keyword. Just pass the key word as the input to this function of <code>Trickster</code> and get the definition right away as return string. Remember, like the above function this one also returns an array as it returns not only definition but also the input value and the link to Wikipedia, where that definition is. The example is well explained below:</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::wiki(<span class="hljs-string">'github'</span>);</code></pre>
 
 
@@ -472,6 +509,8 @@ Array
 </code></pre>
 
 <p>So if you only want to display the definition of <strong>GitHub</strong> as shown in the above example:</p>
+
+
 
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-variable">$trick</span> = Trickster::wiki(<span class="hljs-string">'github'</span>);
 <span class="hljs-keyword">echo</span> <span class="hljs-variable">$trick</span>[<span class="hljs-number">1</span>];</code></pre>
@@ -496,36 +535,39 @@ Trickster::shortenUrl(<span class="hljs-string">'http://github.com'</span>, <spa
 
 <p>Suggest uses the Google Suggest API to get the keyword suggestions. Just provide the input of the keyword that you want the suggestions for as the first parameter and the results will be generated and returned as an array.</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::suggest(<span class="hljs-string">'break'</span>);</code></pre>
 
 
 
 <pre class="prettyprint"><code class="language-php hljs "><span class="hljs-comment">// Output</span>
 
-<span class="hljs-comment">/**
-Array
+
+<span class="hljs-keyword">Array</span>
 (
-    [0] =&gt; breaking
-    [1] =&gt; breaking bad
-    [2] =&gt; break the glass
-    [3] =&gt; break plan
-    [4] =&gt; breaking bad imdb
-    [5] =&gt; kitkat break
-    [6] =&gt; break the bones
-    [7] =&gt; breakthrough
-    [8] =&gt; breaking benjamin
-    [9] =&gt; breakup
-)
-*/</span></code></pre>
-
-
+    [<span class="hljs-number">0</span>] =&gt; breaking
+    [<span class="hljs-number">1</span>] =&gt; breaking bad
+    [<span class="hljs-number">2</span>] =&gt; <span class="hljs-keyword">break</span> the glass
+    [<span class="hljs-number">3</span>] =&gt; <span class="hljs-keyword">break</span> plan
+    [<span class="hljs-number">4</span>] =&gt; breaking bad imdb
+    [<span class="hljs-number">5</span>] =&gt; kitkat <span class="hljs-keyword">break</span>
+    [<span class="hljs-number">6</span>] =&gt; <span class="hljs-keyword">break</span> the bones
+    [<span class="hljs-number">7</span>] =&gt; breakthrough
+    [<span class="hljs-number">8</span>] =&gt; breaking benjamin
+    [<span class="hljs-number">9</span>] =&gt; breakup
+)</code></pre>
 
 <h3 id="17-ip-grabber">17. IP Grabber</h3>
 
 <p>Grabs the user’s IP address. Simple but useful.</p>
 
+
+
 <pre class="prettyprint"><code class="language-php hljs ">Trickster::ip();
 <span class="hljs-comment">// Output: 192.168.145.35</span></code></pre>
+
+
 
 <h3 id="18-currency-converter">18. Currency Converter</h3>
 
@@ -566,13 +608,6 @@ Array
   <td><strong>INR</strong></td>
   <td>Currency Code</td>
 </tr>
-<tr>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-  <td></td>
-</tr>
 </tbody></table>
 
 
@@ -593,6 +628,8 @@ Array
     <span class="hljs-variable">$to</span> = <span class="hljs-string">"INR"</span>;
     <span class="hljs-variable">$convert</span> = Trickster::currencyConvert(<span class="hljs-variable">$amount</span>, <span class="hljs-variable">$from</span>, <span class="hljs-variable">$to</span>);
     <span class="hljs-keyword">echo</span> <span class="hljs-variable">$convert</span>;</code></pre>
+
+
 
 <pre class="prettyprint"><code class=" hljs http"><span class="hljs-attribute">output</span>: <span class="hljs-string">60,000 //In INR (Just an Example).</span></code></pre></div></body>
 </html>
