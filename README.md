@@ -1,5 +1,10 @@
 # Trickster
 
+[![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg?style=flat-square)](https://raw.githubusercontent.com/secrethash/trickster/master/LICENSE) [![Packagist](https://img.shields.io/packagist/dt/secrethash/trickster.svg?style=flat-square)](https://packagist.org/packages/secrethash/trickster) [![Packagist](https://img.shields.io/packagist/v/secrethash/trickster.svg?style=flat-square)](https://packagist.org/packages/secrethash/trickster) [![GitHub release](https://img.shields.io/github/release/secrethash/trickster.svg?style=flat-square)](https://packagist.org/packages/secrethash/trickster)
+
+***Socialize:***
+
+[![Twitter Follow](https://img.shields.io/twitter/follow/secrethash.svg?style=social&label=Follow&style=flat-square)](https://twitter.com/secrethash) [![Twitter](https://img.shields.io/twitter/url/https/github.com/secrethash/dropmenu.svg?style=social&style=flat-square)](https://twitter.com/intent/tweet?text=Wow:&url=%5Bobject%20Object%5D)
 
 *   [Trickster](#trickster)
     *   [Why Trickster?](#why-trickster)
