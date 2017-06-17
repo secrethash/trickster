@@ -16,5 +16,15 @@
     "minimum-stability": "dev",
     "require": {
     	"illuminate/support" : "~5"
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Secrethash\Trickster\TricksterServiceProvider"
+            ],
+            "aliases": {
+                "Trickster": "Secrethash\\Trickster\\Facade\\Trickster"
+            }
+        }
     }
 }
