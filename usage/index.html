@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Usage - Trickster for Laravel</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">Trickster for Laravel</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Usage</a>
+                    </li>
+                    <li >
+                        <a href="../tricks/">Tricks</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="..">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li >
+                        <a rel="prev" href="../tricks/">
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#usage">Usage</a></li>
+            <li><a href="#1-service-provider">1. Service Provider</a></li>
+            <li><a href="#2-facade">2. Facade</a></li>
+            <li><a href="#3-configuration">3. Configuration</a></li>
+            <li><a href="#4-ready-steady-go">4. Ready, Steady, GO!</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="usage">Usage</h2>
+<p>To start using <strong><em>Trickster</em></strong>, you will be needed to set it up first. Follow the below steps to setup <strong>Trickster</strong>:</p>
+<h3 id="1-service-provider">1. Service Provider</h3>
+<p>You will be needing to add the Trickster Service Provider in your <code>app.php</code> which is inside the <code>config</code> directory.</p>
+<ul>
+<li>Open <code>config\app.php</code></li>
+<li>Find <code>'providers'</code></li>
+<li>At the last of this array in <code>Application Service Providers</code> add <code>Secrethash\Trickster\TricksterServiceProvider::class,</code></li>
+</ul>
+<h3 id="2-facade">2. Facade</h3>
+<p>To use <strong>Trickster</strong> flexibly, you need to add the Facade also. Facade will let you use Trickster directly. All you will need to do is add <code>use Trickster;</code> at the head of the controller below namespace and use it by <code>Trickster::trickName();</code></p>
+<p><strong>Lets Add the <code>Trickster</code> Facade:</strong></p>
+<ul>
+<li>Open <code>config\app.php</code></li>
+<li>Find <code>'aliases'</code> array.</li>
+<li>At the end of this array, add <code>'Trickster' =&gt; Secrethash\Trickster\Facade\Trickster::class,</code></li>
+</ul>
+<h3 id="3-configuration">3. Configuration</h3>
+<p>First of all you will need to run the following command in your console:
+<code>php artisan vendor:publish --provider="Secrethash\Trickster\TricksterServiceProvider"</code></p>
+<blockquote>
+<p>This command will publish the <code>trickster.php</code> configuration file for Trickster to your application default <code>config</code> directory.</p>
+</blockquote>
+<p>From <code>config\trickster.php</code> you can edit the default configurations.</p>
+<h3 id="4-ready-steady-go">4. Ready, Steady, GO!</h3>
+<p><strong><em>You are almost done. Now what to do when you want to use a Trickster's Trick?</em></strong></p>
+<p>Here is a sample Controller to show you how to add Trickster and Use it:</p>
+<pre><code class="php">&lt;?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+use App\Http\Requests;
+
+use Auth;
+use Trickster; // Simply add the Facade
+
+class TricksterDemoController extends Controller
+{
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //checking if the user is Authenticated
+        if (Auth::check()) {
+            $user = Auth::user();
+            // Grabbing Gravatar
+            $gravatar = Trickster::gravatar($user-&gt;email, '200');
+         }
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
+
+}
+
+</code></pre>
+
+<p>If you want to use Trickster inside a view file, call the <code>Trickster</code> method directly. That is the advantage of Facade.</p>
+<p>For example:
+<code>{!! Trickster::bbcode($user-&gt;bio) !!}</code>
+or
+<code>{{ Trickster::truncator($blog-&gt;desc, '150', '(...summary)') }}</code></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>

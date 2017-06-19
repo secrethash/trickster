@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>Tricks - Trickster for Laravel</title>
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.5.0.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+	
+	<script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script> 
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="..">Trickster for Laravel</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+                <!-- Main navigation -->
+                <ul class="nav navbar-nav">
+                    <li >
+                        <a href="..">Home</a>
+                    </li>
+                    <li >
+                        <a href="../usage/">Usage</a>
+                    </li>
+                    <li class="active">
+                        <a href="./">Tricks</a>
+                    </li>
+                </ul>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                    <li >
+                        <a rel="next" href="../usage/">
+                            <i class="fa fa-arrow-left"></i> Previous
+                        </a>
+                    </li>
+                    <li class="disabled">
+                        <a rel="prev" >
+                            Next <i class="fa fa-arrow-right"></i>
+                        </a>
+                    </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+                <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+        <li class="main active"><a href="#tricksters-tricks">Trickster's Tricks</a></li>
+            <li><a href="#1-truncator">1. Truncator</a></li>
+            <li><a href="#2-email-validator">2. Email Validator</a></li>
+            <li><a href="#3-slug-converter">3. Slug Converter</a></li>
+            <li><a href="#4-youtube-embed">4. YouTube Embed</a></li>
+            <li><a href="#5-gravatar-grabber">5. Gravatar Grabber</a></li>
+            <li><a href="#6-extension-splitter">6. Extension Splitter</a></li>
+            <li><a href="#7-simple-social-analytics">7. Simple Social Analytics</a></li>
+            <li><a href="#8-bb-code-engine">8. BB Code Engine</a></li>
+            <li><a href="#9-tags-sweeper">9. Tags Sweeper</a></li>
+            <li><a href="#10-time-ago">10. Time Ago</a></li>
+            <li><a href="#11-cipher">11. Cipher</a></li>
+            <li><a href="#12-vimeo-video-embed">12. Vimeo Video Embed</a></li>
+            <li><a href="#13-video-info-grabber">13. Video Info Grabber</a></li>
+            <li><a href="#14-wikipedia-grabber">14. Wikipedia Grabber</a></li>
+            <li><a href="#15-url-shortener">15. URL Shortener</a></li>
+            <li><a href="#16-suggest">16. Suggest</a></li>
+            <li><a href="#17-ip-grabber">17. IP Grabber</a></li>
+            <li><a href="#18-currency-converter">18. Currency Converter</a></li>
+    </ul>
+</div></div>
+                <div class="col-md-9" role="main">
+
+<h2 id="tricksters-tricks">Trickster's Tricks</h2>
+<h3 id="1-truncator">1. Truncator</h3>
+<p>Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses(...) or desired line at the end. For example:</p>
+<blockquote>
+<p><em>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those inter <strong>(read more...)</strong></em></p>
+</blockquote>
+<p>Just call the Trickster and provide it with details of the given parameters.</p>
+<pre><code class="php">Trickster::truncator('Supplied text is written here, can also be given in a variable; lets leave it simple.', 30, '(read more...)');
+// Output: Supplied text is written here, (read more...)
+</code></pre>
+
+<h3 id="2-email-validator">2. Email Validator</h3>
+<p>Email Validator gives you the power of validating the email address by just a simple line of code: </p>
+<pre><code class="php">Trickster::emailValid('someone@example.com');
+</code></pre>
+
+<p>With Trickster by your side you will not have to write the validation code again and again. Just mention the Facade of Trickster an the validation function that's it.</p>
+<h3 id="3-slug-converter">3. Slug Converter</h3>
+<p>Slug Converter makes your life easy for creating search engine friendly slug for your url.</p>
+<blockquote>
+<p>For example: <strong>Text</strong>: <em>Are search engines friendly to search engines?</em></p>
+<blockquote>
+<p><strong>SLUGish URL</strong>: <em>example.com/are-search-engines-friendly-to-search-engines</em></p>
+</blockquote>
+</blockquote>
+<p><strong><em>COOL HUH?</em></strong></p>
+<p>It is really very simple with Trickster. Just call Trickster and specify the slug function, provide in the text and Ta-DA!</p>
+<pre><code class="php">Trickster::slug('Are search engines friendly to search engines?'); // Just One Line!
+//-&gt; OR
+$slug = 'Are search engines friendly to search engines?';
+$slug = Trickster::slug($slug); // That's it!
+</code></pre>
+
+<h3 id="4-youtube-embed">4. YouTube Embed</h3>
+<p>YouTube Embedding can never be more easier! Embed YouTube Videos without writing lines of code just tell the Trickster about it. Call Trickster by:</p>
+<pre><code class="php">Trickster::youtube('VIDEO URL', 'FRAME WIDTH', 'FRAME HEIGHT', 'FRAME THEME');
+//OR LEAVE EVERYTHING ELSE FOR DEFAULT VALUES, JUST PUT THE LINK
+Trickster::youtube('VIDEO URL');
+</code></pre>
+
+<p><strong><em>DEFAULT VALUES:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Description</th>
+<th>Required</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Video URL</td>
+<td>URL to the YouTube video</td>
+<td>YES</td>
+<td>NO</td>
+</tr>
+<tr>
+<td>Frame Width</td>
+<td>Width of the video Frame</td>
+<td>NO</td>
+<td>400</td>
+</tr>
+<tr>
+<td>Frame Height</td>
+<td>Height of the Video frame</td>
+<td>NO</td>
+<td>250</td>
+</tr>
+<tr>
+<td>Frame Theme</td>
+<td><strong>dark</strong> or <strong>light</strong> theme</td>
+<td>NO</td>
+<td>dark</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5-gravatar-grabber">5. Gravatar Grabber</h3>
+<p>This amazing trick helps you to easily get the gravatar in the desired <strong>size</strong>, with desired <strong>rating</strong>. Not only that, but it also helps you to set the desired <strong>default image</strong> in case the grabbing fails. Not yet finished, two more amazing features; allows you to <strong>set the option of returning only the url of the gravatar or even the gravatar with the whole <code>&lt;img /&gt;</code> tag</strong> and in case you want Trickster to return the whole <em>img</em> tag then you also have the option of <strong>setting desired attributes in an array <em>(ex. below)</em></strong>.</p>
+<pre><code class="php">Trickster::gravatar('example@email.com', '200', 'monsterid', 'r', 'true', array('class'=&gt;'img-class', 'key'=&gt;'value'));
+</code></pre>
+
+<p><strong>The Parameters Explained:</strong></p>
+<ul>
+<li><strong>Email Address</strong>: Just simple email address. <em>NO DEFAULT</em>, <em>REQUIRED</em>.</li>
+<li><strong>Size</strong>: Size of image in pixels. <em>DEFAULT: 100</em>, <em>NOT REQUIRED</em>.</li>
+<li><strong>Default image</strong>: Default Image like <em>mm</em>(mystery man), <em>monsterid</em>, <em>identicon</em>, <em>wavatar</em>, 404. <em>DEFAULT: mm</em>, <em>NOT REQUIRED</em>.</li>
+<li><strong>Rating</strong>: Image Max Rating (for ex. <em>g</em>, <em>pg</em>, <em>r</em>, <em>x</em>). <em>DEFAULT: g</em>, <em>NOT REQUIRED</em>.</li>
+<li><strong><code>&lt;img /&gt;</code></strong>: Do you want full HTML image tag? This parameter should be supplied with boolean value (TRUE/FALSE). <em>DEFAULT: false</em>, <em>NOT REQUIRED</em>.</li>
+<li><strong>Key-Value Attributes</strong>: An array is to be passed to defined any special attributes required by the html image tag, if requested. <em>NO DEFAULT</em>, <em>NOT REQUIRED</em></li>
+</ul>
+<h3 id="6-extension-splitter">6. Extension Splitter</h3>
+<p>This simple trick splits the file extension of the file supplied as the parameter and returns it. Simply call the Trickster and provide the full file name, the trick will split the file ext. from the file name and return it.</p>
+<pre><code class="php">Trickster::getExtension('really-funny.image.jpg');
+</code></pre>
+
+<p><strong><em>Finished? Not Yet!</em></strong></p>
+<h3 id="7-simple-social-analytics">7. Simple Social Analytics</h3>
+<p>This trick eases your life, seriously. Simple and easy it is to show your social counts with Trickster. Trickster's Simple Social Analytics shows the number of Shares or Comments over a specific URL on Facebook when the trick is executed.</p>
+<blockquote>
+<p>Note: Twitter has been deprecated. As of 20th November 2015 there's no Tweet count API. <a href="https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform">Know More</a></p>
+</blockquote>
+<ul>
+<li>Supported Social Networks:</li>
+<li>Facebook</li>
+<li>~~Twitter~~ (deprecated)</li>
+<li>Returned Strings</li>
+<li>Facebook<ul>
+<li>Share Count</li>
+<li>Comment Count</li>
+</ul>
+</li>
+<li>~~Twitter~~<ul>
+<li>~~Tweets~~</li>
+</ul>
+</li>
+</ul>
+<pre><code class="php">$fbAnalytics = Trickster::social('facebook', 'http://github.com/secrethash');
+echo $fbAnalytics['share_count'].' Shares of Github.com/secrethash';
+echo $fbAnalytics['comment_count'].' Comments on Github.com/secrethash';
+</code></pre>
+
+<blockquote>
+<p>Output 1: 95457821 Shares of Github.com/secrethash
+Output 2: 59865231 Comments on Github.com/secrethash</p>
+</blockquote>
+<p>(Don't be bothered about the numbers, they are just random :-P )</p>
+<p>BTW Simple, right?</p>
+<h3 id="8-bb-code-engine">8. BB Code Engine</h3>
+<p>BB code engine trick is a little distinctive. It's actually amazing. It makes easy to convert the BB Code to HTML format. Easy to initialize, it makes it unique.</p>
+<pre><code class="php">// If implemented directly in the  Blade View File.
+{!! Trickster::bbcode($user-&gt;bio) !!}
+</code></pre>
+
+<p><strong><em>The Supported BB Codes Currently are: </em></strong></p>
+<table>
+<thead>
+<tr>
+<th>BB Code</th>
+<th>Description</th>
+<th>Converted HTML</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>[b]...[/b]</td>
+<td>Bold Text</td>
+<td><code>&lt;b&gt;...&lt;/b&gt;</code></td>
+</tr>
+<tr>
+<td>[i]...[/i]</td>
+<td>Italics Text</td>
+<td><code>&lt;i&gt;...&lt;/i&gt;</code></td>
+</tr>
+<tr>
+<td>[u]...[/u]</td>
+<td>Underlined</td>
+<td><code>&lt;u&gt;...&lt;/u&gt;</code></td>
+</tr>
+<tr>
+<td>[img=url]alt[/img]</td>
+<td>Image Implementation. Where: url is the image url &amp; alt is alternate text.</td>
+<td><code>&lt;img src="#url" alt="Alternate Text" /&gt;</code></td>
+</tr>
+<tr>
+<td>[youtube]id[/youtube]</td>
+<td>Youtube Embed. Where id is the Video ID of youtube video.</td>
+<td>YouTube video frame of width 400px &amp; height 250px</td>
+</tr>
+<tr>
+<td>[vimeo]id[/vimeo]</td>
+<td>Vimeo Embed. Where id is the Video ID of Vimeo video.</td>
+<td>Vimeo video frame of width 400px &amp; height 250px</td>
+</tr>
+<tr>
+<td>[p]...[/p]</td>
+<td>Paragraph.</td>
+<td><code>&lt;p&gt;...&lt;/p&gt;</code></td>
+</tr>
+<tr>
+<td>[br/]</td>
+<td>Line Break</td>
+<td><code>&lt;br/&gt;</code></td>
+</tr>
+<tr>
+<td>[url=URL]ALT[/url]</td>
+<td>Adding a URL. Where: URL is the Target Link and ALT is the URL text to be shown.</td>
+<td><code>&lt;a href="#url"&gt;Google&lt;/a&gt;</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="9-tags-sweeper">9. Tags Sweeper</h3>
+<p>Tag sweeper is a unwanted tag remover trick. It easily removes the unwanted script tags from the provided string. In accordance to the BB Code Engine,  Tag Sweeper Cleans the HTML <code>&lt;script&gt;&lt;/script&gt;</code> code and leaves the BB Code making the supplied text <strong>Clean and Safe</strong>.</p>
+<pre><code class="php">Trickster::clean($string);
+</code></pre>
+
+<h3 id="10-time-ago">10. Time Ago</h3>
+<p><strong>Time ago</strong> is a wonderful way of displaying the post time. You can use the Trickster's Facade <code>Trickster</code> to convert easily the provided Time &amp; Date to Time Ago. The default format for this is <code>Y-m-d H:i:s</code>. In simple words <code>1996-07-30 21:52:30</code>, <code>Year-Month-Day Hour:Min:Sec</code></p>
+<blockquote>
+<p>For example: <em>This repo was created 2 months ago</em></p>
+</blockquote>
+<p><strong>Trick:</strong></p>
+<pre><code class="php">Trickster::timeAgo('1996-07-30 21:52:30');
+</code></pre>
+
+<h3 id="11-cipher">11. Cipher</h3>
+<p>Cipher enables you to encrypt any provided string of plain text to convert into Encrypted text form. Any PHP supported algorithm can be provided to <strong>Cipher</strong> to encrypt it. You can also encrypt a string and add a <strong>Salt</strong> to make it more secure. One will need the <strong>Salt</strong> to decrypt it.</p>
+<pre><code class="php">Trickster::encryptString('SHA1', 'Text to Encrypt', 'Desired Salt');
+</code></pre>
+
+<h3 id="12-vimeo-video-embed">12. Vimeo Video Embed</h3>
+<p>Vimeo Video Embed, same as YouTube Video Embed. It needs the video link of Vimeo Video as an input. Same as Youtube Embed you can set custom width and height in it also. </p>
+<pre><code class="php">Trickster::vimeo('https://vimeo.com/30626474', '400', '250');
+//-&gt; OR, Simple &lt;-//
+Trickster::vimeo('https://vimeo.com/30626474');
+</code></pre>
+
+<h3 id="13-video-info-grabber">13. Video Info Grabber</h3>
+<p>A great way of getting the video information from <strong>YouTube and Vimeo</strong>. <em>Video Info Grabber</em> makes it easy for you to grab the video info from link of YouTube &amp; Vimeo video portals and return an array containing the video info. Returning as an array gives you the flexibility to use the info as you want.</p>
+<pre><code class="php">Trickster::getVideoInfo('https://vimeo.com/30626474');
+</code></pre>
+
+<pre><code class="html">// Output
+Array
+(
+    [title] =&gt; The Official Space Ibiza Closing Party 2011 Video
+    [description] =&gt; 
+    [thumbnail] =&gt; http://i1.ytimg.com/vi/AL-QX0wj44A/default.jpg
+    [duration] =&gt; 962
+    [upload_date] =&gt; 2011-11-05 02:11:05
+)
+</code></pre>
+
+<h3 id="14-wikipedia-grabber">14. Wikipedia Grabber</h3>
+<p>This simple trick helps you to get the <strong>Wikipedia version definition</strong> of a particular keyword. Just pass the key word as the input to this function of <code>Trickster</code> and get the definition right away as return string. Remember, like the above function this one also returns an array as it returns not only definition but also the input value and the link to Wikipedia, where that definition is. The example is well explained below:</p>
+<pre><code class="php">Trickster::wiki('github');
+</code></pre>
+
+<pre><code class="php">// Returns
+Array
+(
+    [0] =&gt; GitHub
+    [1] =&gt; GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features. 
+    [2] =&gt; http://en.wikipedia.org/wiki/GitHub
+)
+
+</code></pre>
+
+<p>So if you only want to display the definition of <strong>GitHub</strong> as shown in the above example:</p>
+<pre><code class="php">$trick = Trickster::wiki('github');
+echo $trick[1];
+</code></pre>
+
+<h3 id="15-url-shortener">15. URL Shortener</h3>
+<p>URL shortener make your url short using the Google's goo.gl API and TinyURL API. Make your life simple with just one liner URL Shortener that can shorten the URL using 2 distinctive APIs.</p>
+<pre><code class="php">// Google's URL Shortener
+Trickster::shortenUrl('http://github.io', 'google');
+
+// TinyURL URL Shortener
+Trickster::shortenUrl('http://github.com', 'tinyurl');
+</code></pre>
+
+<h3 id="16-suggest">16. Suggest</h3>
+<p>Suggest uses the Google Suggest API to get the keyword suggestions. Just provide the input of the keyword that you want the suggestions for as the first parameter and the results will be generated and returned as an array.</p>
+<pre><code class="php">Trickster::suggest('break');
+</code></pre>
+
+<pre><code class="php">// Output
+
+
+Array
+(
+    [0] =&gt; breaking
+    [1] =&gt; breaking bad
+    [2] =&gt; break the glass
+    [3] =&gt; break plan
+    [4] =&gt; breaking bad imdb
+    [5] =&gt; kitkat break
+    [6] =&gt; break the bones
+    [7] =&gt; breakthrough
+    [8] =&gt; breaking benjamin
+    [9] =&gt; breakup
+)
+</code></pre>
+
+<h3 id="17-ip-grabber">17. IP Grabber</h3>
+<p>Grabs the user's IP address. Simple but useful.</p>
+<pre><code class="php">Trickster::ip();
+// Output: 192.168.145.35
+</code></pre>
+
+<h3 id="18-currency-converter">18. Currency Converter</h3>
+<p>With the help of <strong><em>CURL</em></strong> and <strong><em>Google</em></strong> the currency is converted using the live exchange rate. Trickster's <code>Trickster::currencyConvert()</code> can convert currency within seconds using the Currency Codes.</p>
+<p>The Currency Converter excepts three Parameters with last an optional one.</p>
+<p>Parameters &amp; Inputs:</p>
+<table>
+<thead>
+<tr>
+<th>Parameters</th>
+<th>Description</th>
+<th>Value</th>
+<th>Default</th>
+<th>Accepts</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Amount</td>
+<td>The amount to convert</td>
+<td>Integer</td>
+<td><strong>------</strong></td>
+<td>Currency Amount</td>
+</tr>
+<tr>
+<td>From</td>
+<td>Convert Currency From</td>
+<td>String</td>
+<td><strong>------</strong></td>
+<td>Currency Code</td>
+</tr>
+<tr>
+<td>To</td>
+<td>Convert Currency To</td>
+<td>String</td>
+<td><strong>INR</strong></td>
+<td>Currency Code</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>INR</strong> is the Currency Code for <strong>Indian National Rupee</strong></p>
+</blockquote>
+<pre><code class="php">    /**
+    * Sample Code
+    * @param $amount init Amount to convert
+    * @param $from string Currency Code
+    * @param $to string Currency Code
+    * @return string - converted amount
+    **/
+
+    $amount = 100;
+    $from = &quot;USD&quot;;
+    $to = &quot;INR&quot;;
+    $convert = Trickster::currencyConvert($amount, $from, $to);
+    echo $convert;
+</code></pre>
+
+<pre><code>output: 60,000 //In INR (Just an Example).
+</code></pre></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            <p>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</p>
+        </footer>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script><div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    From here you can search these documents. Enter
+                    your search terms below.
+                </p>
+                <form role="form">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                    </div>
+                </form>
+                <div id="mkdocs-search-results"></div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+</div>
+
+    </body>
+</html>
