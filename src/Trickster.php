@@ -350,7 +350,7 @@ class Trickster
     public function gravatar($email, $s = 100, $d = 'mm', $r = 'g', $img = false, $atts = array())
     {
         if (!empty($email)) {
-            $url = 'http://www.gravatar.com/avatar/';
+            $url = 'https://www.gravatar.com/avatar/';
             $url .= md5(strtolower(trim($email)));
             $url .= "?s={$s}&d={$d}&r={$r}";
             if ($img) {
