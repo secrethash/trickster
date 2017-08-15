@@ -5,11 +5,6 @@ namespace Secrethash\Trickster;
 
 class Trickster
 {
-    /**
-     * Twitter api url for get tweets
-     * @var string
-     */
-    protected $_twitterUrl = '';
 
     /**
      * Facebook api url for get likes
@@ -66,6 +61,12 @@ class Trickster
     protected $_vimeoVideoApi = '';
 
     /**
+     * Get vimeo video data from api
+     * @var string
+     */
+    protected $_googleFinanceApi = 'https://www.google.com/finance/converter?a=%d&from=%s&to=%s';
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -73,7 +74,6 @@ class Trickster
     public function __construct()
     {
         //
-        $this->_twitterUrl = config('trickster.apiUrl.twitter.social');
         $this->_facebookUrl = config('trickster.apiUrl.facebook.social');
         $this->_googleApiKey = config('trickster.api.google.urlShorten');
         $this->_googleShortApiUrl = config('trickster.apiUrl.google.urlShorten');
@@ -83,6 +83,7 @@ class Trickster
         $this->_wikiApiUrl = config('trickster.apiUrl.wikipedia.askWiki');
         $this->_youtubeVideoApi = config('trickster.apiUrl.google.youtube');
         $this->_vimeoVideoApi = config('trickster.apiUrl.vimeo.vimeo');
+        $this->_googleFinanceApi = (config('trickster.apiUrl.google.finance') ? config('trickster.apiUrl.google.finance') : $this->_googleFinanceApi);
     }
     
     /**
@@ -189,18 +190,11 @@ class Trickster
     public function social($network, $url)
     {
         if (!empty($network) && !empty($url)) {
-            if ($network == 'twitter') {
-                $url_data = sprintf($this->_twitterUrl, $url);
-            } elseif ($network == 'facebook') {
+            if ($network == 'facebook') {
                 $url_data = sprintf($this->_facebookUrl, $url);
             }
 
             switch ($network) {
-                /*case 'twitter':
-                    $result = $this->_socialCurl($url_data);
-
-                    return $result['count'];
-                    break;*/ // Deprecated
 
                 case 'facebook':
                     $result = $this->_socialCurl($url_data);
@@ -288,7 +282,7 @@ class Trickster
         if (!empty($url) && intval($width) && intval($height) && !empty($theme)) {
             preg_match('/(?<=v(\=|\/))([-a-zA-Z0-9_]+)|(?<=youtu\.be\/)([-a-zA-Z0-9_]+)/', $url, $v);
 
-            return "<iframe src=\"http://www.youtube.com/embed/{$v[0]}?theme={$theme}&amp;iv_load_policy=3&amp;wmode=transparent\"
+            return "<iframe src=\"https://www.youtube.com/embed/{$v[0]}?theme={$theme}&amp;iv_load_policy=3&amp;wmode=transparent\"
                     allowfullscreen=\"\" frameborder=\"0\" width=\"{$width}\" height=\"{$height}\" ></iframe>
             ";
         }
@@ -307,7 +301,7 @@ class Trickster
         if (!empty($url) && intval($width) && intval($height)) {
             preg_match('(\d+)', $url, $id);
 
-            return "<iframe src=\"http://player.vimeo.com/video/$id[0]?title=0&amp;byline=0&amp;portrait=0\"
+            return "<iframe src=\"https://player.vimeo.com/video/$id[0]?title=0&amp;byline=0&amp;portrait=0\"
                     webkitallowfullscreen=\"\" mozallowfullscreen=\"\" allowfullscreen=\"\" frameborder=\"0\"
                     width=\"{$width}\" height=\"{$height}\"></iframe>
             ";
@@ -345,7 +339,7 @@ class Trickster
      * @param  bool   $img   True to return a complete IMG tag False for just the URL
      * @param  array  $atts  Optional, additional key/value attributes to include in the IMG tag
      * @return string        Containing either just a URL or a complete image tag
-     * @source               http://gravatar.com/site/implement/images/php/
+     * @source               https://gravatar.com/site/implement/images/php/
      */
     public function gravatar($email, $s = 100, $d = 'mm', $r = 'g', $img = false, $atts = array())
     {
@@ -389,8 +383,8 @@ class Trickster
                 '<i>\\1</i>',
                 '<u>\\1</u>',
                 '<img src="\\1" alt="\\2" />',
-                '<iframe width="400" height="250" src="http://www.youtube.com/embed/\\1?theme=dark&iv_load_policy=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>',
-                '<iframe src="http://player.vimeo.com/video/\\1?title=0&amp;byline=0&amp;portrait=0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" frameborder="0" width="400" height="250"></iframe>',
+                '<iframe width="400" height="250" src="https://www.youtube.com/embed/\\1?theme=dark&iv_load_policy=3&wmode=transparent" frameborder="0" allowfullscreen></iframe>',
+                '<iframe src="https://player.vimeo.com/video/\\1?title=0&amp;byline=0&amp;portrait=0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" frameborder="0" width="400" height="250"></iframe>',
                 '<p>\\1</p>',
                 '<br/>',
                 '<a href="\\1">\\2</a>'
@@ -577,7 +571,7 @@ class Trickster
     public function currencyConvert($amount, $from, $to='INR') {
      
         
-        $url = "http://www.google.com/finance/converter?a=$amount&from=$from&to=$to";
+        $url = sprintf($this->_googleFinanceApi, $amount, $from, $to);
 
         $req = curl_init();
         $timeout = 0;

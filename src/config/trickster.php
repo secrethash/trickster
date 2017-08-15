@@ -43,23 +43,21 @@ return array(
     'apiUrl' => array(
         'google'     => array(
             'urlShorten'    =>  'https://www.googleapis.com/urlshortener/v1/url',
-            'suggest'       =>  'http://suggestqueries.google.com/complete/search?output=firefox&client=firefox&hl=en-US&q=%s',
-            'youtube'       =>  'http://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json'
-            ),
-        'twitter'    => array(
-            'social'        =>  'http://urls.api.twitter.com/1/urls/count.json?url=%s'
+            'suggest'       =>  'https://suggestqueries.google.com/complete/search?output=firefox&client=firefox&hl=en-US&q=%s',
+            'youtube'       =>  'https://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json',
+            'finance'       =>  'https://www.google.com/finance/converter?a=%d&from=%s&to=%s'
             ),
         'wikipedia'  => array(
-            'askWiki'       =>  'http://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1'
+            'askWiki'       =>  'https://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1'
             ),
         'facebook'   => array(
             'social'        =>  'https://graph.facebook.com/?ids=%s'
             ),
         'tinyurl'    => array(
-            'urlShorten'    =>  'http://tinyurl.com/api-create.php?url=%s'
+            'urlShorten'    =>  'https://tinyurl.com/api-create.php?url=%s'
             ),
         'vimeo'      => array(
-            'vimeo'         =>  'http://vimeo.com/api/v2/video/%s.json'
+            'vimeo'         =>  'https://vimeo.com/api/v2/video/%s.json'
             )
     ),
 

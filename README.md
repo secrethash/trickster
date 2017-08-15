@@ -1,8 +1,14 @@
 # Trickster
 
-> **Open For Suggestions** on more Tricks/Helper Functions that Laravel does not provides by default. **Give your suggestions using *Issue* Tracking feature of GitHub.**
+A Simple Extended helper functions for Laravel. Supports v5.3+ (also **v5.5**). Tricks that will optimize you development.
 
-> ***[Full Documentation](https://secrethash.github.io/trickster)*** have been **Moved**.
+
+> **Open For Suggestions** on more Tricks/Helper Functions that Laravel does not provides by default. **Give your suggestions using *Issue* Tracking feature of GitHub** and I will do my best to add them.
+
+## Upgrade Guide
+### To v2.1.0
+- Update your published `config\trickster.php` according to the project's updated `config\trickster.php`.
+- Remove the Usage of Twitter Analytics as it's support has now been discontinued and therefore, it has been removed from Trickster also.
 
 ## Trickster’s Tricks
 	1. Truncator
@@ -27,17 +33,25 @@
 
 ## Why Trickster?
 * Trickster is an Laravel package that makes Laravel Fun by extending the helper functions.
-* Trickster provides extended Helper Functions a.k.a Tricks that makes coding with Laravel easy.
+* Trickster provides extended Helper Functions a.k.a Tricks that makes coding with Laravel Fun.
 * With **Trickster** inside your **Laravel framework**, your app will become a **Gambit**. :-P
 
 ## Installation
 Installing Trickster is easy. Just type the command:
 
-`composer require secrethash/trickster`
+```sh
+composer require secrethash/trickster
+```
+or add this line in your `composer.json` file:
+```json
+        "secrethash/trickster": "2.*"
+```
 
 ## Requirements
 * **Laravel 5.3+**
 * **cURL**
 * **PHP 5.4.x**
 
-> To Make it more easy and readable, the Documentation is shifted from here. ***[>Full Documentation<](https://secrethash.github.io/trickster)***
+## Important Links
+* **[Trickster's Documentation](https://secrethash.github.io/trickster)**
+* ChangeLog: **To Be Added Soon**
