@@ -208,7 +208,11 @@ class Trickster
                     }
                     else
                     {
-                        return $result[$url]['share'];
+                        $data = array(
+                            'comments'=>$result[$url]['share']['comment_count'],
+                            'shares'=>$result[$url]['share']['share_count']
+                            );
+                        return (object)$data;
                     }
                     // print_r($result); // Classic Debugger :P
                     break;
