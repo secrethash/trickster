@@ -93,10 +93,13 @@ class Trickster
      * @param  string $suffix What do you want to show at the end
      * @return mixed          Return truncated text with suffix
      */
-    public function truncator($text, $number, $suffix = ' read more...')
+    public function truncator($text, $number, $suffix = ' ...see more')
     {
         if (!empty($text) && intval($number)) {
-            return substr($text, 0, $number) . $suffix;
+            if(strlen($text) > $number) {
+                return mb_substr($text, 0, mb_strpos($text, ' ', $number, 'UTF-8'), 'UTF-8') . $suffix;
+            }
+            return $text;
         }
         return false;
     }
