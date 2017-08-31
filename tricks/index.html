@@ -559,11 +559,11 @@
                 
                 <h2 id="tricksters-tricks">Trickster's Tricks</h2>
 <h3 id="1-truncator">1. Truncator</h3>
-<p>Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses(...) or desired line at the end. For example:</p>
+<p>Truncate is a Text Truncator. It Truncates the text and enable you to add ellipses and see more <code>...see more</code> or desired line at the end. For example:</p>
 <blockquote>
-<p><em>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those inter <strong>(read more...)</strong></em></p>
+<p><em>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those inter <strong>(...see more)</strong></em></p>
 </blockquote>
-<p>Just call the Trickster and provide it with details of the given parameters.</p>
+<p>Just call Trickster and provide it with details of the given parameters.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::truncator(&#39;Supplied text is written here, can also be given in a variable; lets leave it simple.&#39;, 30, &#39;(read more...)&#39;);</span>
 <span class="x">// Output: Supplied text is written here, (read more...)</span>
@@ -585,15 +585,14 @@
 <p><strong>SLUGish URL</strong>: <em>example.com/are-search-engines-friendly-to-search-engines</em></p>
 </blockquote>
 </blockquote>
-<p><strong><em>COOL HUH?</em></strong></p>
 <p>It is really very simple with Trickster. Just call Trickster and specify the slug function, provide in the text and Ta-DA!</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
 3
-4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::slug(&#39;Are search engines friendly to search engines?&#39;); // Just One Line!</span>
+4</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::slug(&#39;Are search engines friendly to search engines?&#39;); // Just One Line!</span>
 <span class="x">//-&gt; OR</span>
-<span class="x">$slug = &#39;Are search engines friendly to search engines?&#39;;</span>
-<span class="x">$slug = Trickster::slug($slug); // That&#39;s it!</span>
+<span class="x">    $slug = &#39;Are search engines friendly to search engines?&#39;;</span>
+<span class="x">    $slug = Trickster::slug($slug); // That&#39;s it!</span>
 </pre></div>
 </td></tr></table>
 
@@ -601,9 +600,9 @@
 <p>YouTube Embedding can never be more easier! Embed YouTube Videos without writing lines of code just tell the Trickster about it. Call Trickster by:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::youtube(&#39;VIDEO URL&#39;, &#39;FRAME WIDTH&#39;, &#39;FRAME HEIGHT&#39;, &#39;FRAME THEME&#39;);</span>
-<span class="x">//OR LEAVE EVERYTHING ELSE FOR DEFAULT VALUES, JUST PUT THE LINK</span>
-<span class="x">Trickster::youtube(&#39;VIDEO URL&#39;);</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::youtube(&#39;VIDEO URL&#39;, &#39;FRAME WIDTH&#39;, &#39;FRAME HEIGHT&#39;, &#39;FRAME THEME&#39;);</span>
+<span class="x">    //OR LEAVE EVERYTHING ELSE FOR DEFAULT VALUES, JUST PUT THE LINK</span>
+<span class="x">    Trickster::youtube(&#39;VIDEO URL&#39;);</span>
 </pre></div>
 </td></tr></table>
 
@@ -646,7 +645,7 @@
 </table>
 <h3 id="5-gravatar-grabber">5. Gravatar Grabber</h3>
 <p>This amazing trick helps you to easily get the gravatar in the desired <strong>size</strong>, with desired <strong>rating</strong>. Not only that, but it also helps you to set the desired <strong>default image</strong> in case the grabbing fails. Not yet finished, two more amazing features; allows you to <strong>set the option of returning only the url of the gravatar or even the gravatar with the whole <code>&lt;img /&gt;</code> tag</strong> and in case you want Trickster to return the whole <em>img</em> tag then you also have the option of <strong>setting desired attributes in an array <em>(ex. below)</em></strong>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::gravatar(&#39;example@email.com&#39;, &#39;200&#39;, &#39;monsterid&#39;, &#39;r&#39;, &#39;true&#39;, array(&#39;class&#39;=&gt;&#39;img-class&#39;, &#39;key&#39;=&gt;&#39;value&#39;));</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::gravatar(&#39;example@email.com&#39;, &#39;200&#39;, &#39;monsterid&#39;, &#39;r&#39;, &#39;true&#39;, array(&#39;class&#39;=&gt;&#39;img-class&#39;, &#39;key&#39;=&gt;&#39;value&#39;));</span>
 </pre></div>
 </td></tr></table>
 
@@ -661,7 +660,7 @@
 </ul>
 <h3 id="6-extension-splitter">6. Extension Splitter</h3>
 <p>This simple trick splits the file extension of the file supplied as the parameter and returns it. Simply call the Trickster and provide the full file name, the trick will split the file ext. from the file name and return it.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::getExtension(&#39;really-funny.image.jpg&#39;);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::getExtension(&#39;really-funny.image.jpg&#39;);</span>
 </pre></div>
 </td></tr></table>
 
@@ -669,28 +668,27 @@
 <h3 id="7-simple-social-analytics">7. Simple Social Analytics</h3>
 <p>This trick eases your life, seriously. Simple and easy it is to show your social counts with Trickster. Trickster's Simple Social Analytics shows the number of Shares or Comments over a specific URL on Facebook when the trick is executed.</p>
 <blockquote>
-<p>Note: Twitter has been deprecated. As of 20th November 2015 there's no Tweet count API. <a href="https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform">Know More</a></p>
+<p>Note: Twitter has been deprecated and removed in <code>v2.1.0</code>. As of 20th November 2015 there's no Tweet count API. <a href="https://blog.twitter.com/2015/hard-decisions-for-a-sustainable-platform">Know More</a></p>
 </blockquote>
 <ul>
-<li>Supported Social Networks:</li>
+<li>Supported Social Networks:<ul>
 <li>Facebook</li>
-<li>~~Twitter~~ (deprecated)</li>
-<li>Returned Strings</li>
+</ul>
+</li>
+<li>Returned Strings<ul>
 <li>Facebook<ul>
 <li>Share Count</li>
 <li>Comment Count</li>
 </ul>
 </li>
-<li>~~Twitter~~<ul>
-<li>~~Tweets~~</li>
 </ul>
 </li>
 </ul>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">$fbAnalytics = Trickster::social(&#39;facebook&#39;, &#39;http://github.com/secrethash&#39;);</span>
-<span class="x">echo $fbAnalytics[&#39;share_count&#39;].&#39; Shares of Github.com/secrethash&#39;;</span>
-<span class="x">echo $fbAnalytics[&#39;comment_count&#39;].&#39; Comments on Github.com/secrethash&#39;;</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    $fbAnalytics = Trickster::social(&#39;facebook&#39;, &#39;http://github.com/secrethash&#39;);</span>
+<span class="x">    echo $fbAnalytics-&gt;shares.&#39; Shares of Github.com/secrethash&#39;;</span>
+<span class="x">    echo $fbAnalytics-&gt;comments.&#39; Comments on Github.com/secrethash&#39;;</span>
 </pre></div>
 </td></tr></table>
 
@@ -699,12 +697,11 @@
 Output 2: 59865231 Comments on Github.com/secrethash</p>
 </blockquote>
 <p>(Don't be bothered about the numbers, they are just random :-P )</p>
-<p>BTW Simple, right?</p>
 <h3 id="8-bb-code-engine">8. BB Code Engine</h3>
-<p>BB code engine trick is a little distinctive. It's actually amazing. It makes easy to convert the BB Code to HTML format. Easy to initialize, it makes it unique.</p>
+<p>BB code engine makes it easy to convert the BB Code to HTML format. Easy to initialize, makes it unique.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">// If implemented directly in the  Blade View File.</span>
-<span class="x">{!! Trickster::bbcode($user-&gt;bio) !!}</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    // If implemented directly in the  Blade View File.</span>
+<span class="x">    {!! Trickster::bbcode($user-&gt;bio) !!}</span>
 </pre></div>
 </td></tr></table>
 
@@ -767,23 +764,23 @@ Output 2: 59865231 Comments on Github.com/secrethash</p>
 </table>
 <h3 id="9-tags-sweeper">9. Tags Sweeper</h3>
 <p>Tag sweeper is a unwanted tag remover trick. It easily removes the unwanted script tags from the provided string. In accordance to the BB Code Engine,  Tag Sweeper Cleans the HTML <code>&lt;script&gt;&lt;/script&gt;</code> code and leaves the BB Code making the supplied text <strong>Clean and Safe</strong>.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::clean($string);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::clean($string);</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="10-time-ago">10. Time Ago</h3>
 <p><strong>Time ago</strong> is a wonderful way of displaying the post time. You can use the Trickster's Facade <code>Trickster</code> to convert easily the provided Time &amp; Date to Time Ago. The default format for this is <code>Y-m-d H:i:s</code>. In simple words <code>1996-07-30 21:52:30</code>, <code>Year-Month-Day Hour:Min:Sec</code></p>
 <blockquote>
-<p>For example: <em>This repo was created 2 months ago</em></p>
+<p>For example: <em>This repository was created <code>2 months ago</code></em></p>
 </blockquote>
 <p><strong>Trick:</strong></p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::timeAgo(&#39;1996-07-30 21:52:30&#39;);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::timeAgo(&#39;1996-07-30 21:52:30&#39;);</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="11-cipher">11. Cipher</h3>
 <p>Cipher enables you to encrypt any provided string of plain text to convert into Encrypted text form. Any PHP supported algorithm can be provided to <strong>Cipher</strong> to encrypt it. You can also encrypt a string and add a <strong>Salt</strong> to make it more secure. One will need the <strong>Salt</strong> to decrypt it.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::encryptString(&#39;SHA1&#39;, &#39;Text to Encrypt&#39;, &#39;Desired Salt&#39;);</span>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::encryptString(&#39;SHA1&#39;, &#39;Text to Encrypt&#39;, &#39;Desired Salt&#39;);</span>
 </pre></div>
 </td></tr></table>
 
@@ -791,64 +788,72 @@ Output 2: 59865231 Comments on Github.com/secrethash</p>
 <p>Vimeo Video Embed, same as YouTube Video Embed. It needs the video link of Vimeo Video as an input. Same as Youtube Embed you can set custom width and height in it also. </p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
 2
-3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::vimeo(&#39;https://vimeo.com/30626474&#39;, &#39;400&#39;, &#39;250&#39;);</span>
-<span class="x">//-&gt; OR, Simple &lt;-//</span>
-<span class="x">Trickster::vimeo(&#39;https://vimeo.com/30626474&#39;);</span>
+3</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::vimeo(&#39;https://vimeo.com/30626474&#39;, &#39;400&#39;, &#39;250&#39;);</span>
+<span class="x">    //-&gt; OR, Simple &lt;-//</span>
+<span class="x">    Trickster::vimeo(&#39;https://vimeo.com/30626474&#39;);</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="13-video-info-grabber">13. Video Info Grabber</h3>
 <p>A great way of getting the video information from <strong>YouTube and Vimeo</strong>. <em>Video Info Grabber</em> makes it easy for you to grab the video info from link of YouTube &amp; Vimeo video portals and return an array containing the video info. Returning as an array gives you the flexibility to use the info as you want.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::getVideoInfo(&#39;https://vimeo.com/30626474&#39;);</span>
-</pre></div>
-</td></tr></table>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11
+12
+13</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::getVideoInfo(&#39;https://vimeo.com/30626474&#39;);</span>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9</pre></div></td><td class="code"><div class="codehilite"><pre><span></span>// Output
-Array
-(
-    [title] =&gt; The Official Space Ibiza Closing Party 2011 Video
-    [description] =&gt; 
-    [thumbnail] =&gt; http://i1.ytimg.com/vi/AL-QX0wj44A/default.jpg
-    [duration] =&gt; 962
-    [upload_date] =&gt; 2011-11-05 02:11:05
-)
+<span class="x">    /*</span>
+<span class="x">        Output:</span>
+<span class="x">        Array</span>
+<span class="x">        (</span>
+<span class="x">            [title] =&gt; The Official Space Ibiza Closing Party 2011 Video</span>
+<span class="x">            [description] =&gt; </span>
+<span class="x">            [thumbnail] =&gt; http://i1.ytimg.com/vi/AL-QX0wj44A/default.jpg</span>
+<span class="x">            [duration] =&gt; 962</span>
+<span class="x">            [upload_date] =&gt; 2011-11-05 02:11:05</span>
+<span class="x">        )</span>
+<span class="x">    */</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="14-wikipedia-grabber">14. Wikipedia Grabber</h3>
 <p>This simple trick helps you to get the <strong>Wikipedia version definition</strong> of a particular keyword. Just pass the key word as the input to this function of <code>Trickster</code> and get the definition right away as return string. Remember, like the above function this one also returns an array as it returns not only definition but also the input value and the link to Wikipedia, where that definition is. The example is well explained below:</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::wiki(&#39;github&#39;);</span>
-</pre></div>
-</td></tr></table>
+<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 8
+ 9
+10
+11</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::wiki(&#39;github&#39;);</span>
 
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2
-3
-4
-5
-6
-7</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">// Returns</span>
-<span class="x">Array</span>
-<span class="x">(</span>
-<span class="x">    [0] =&gt; GitHub</span>
-<span class="x">    [1] =&gt; GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features. </span>
-<span class="x">    [2] =&gt; http://en.wikipedia.org/wiki/GitHub</span>
-<span class="x">)</span>
+<span class="x">    /*</span>
+<span class="x">        Output:</span>
+<span class="x">        Array</span>
+<span class="x">        (</span>
+<span class="x">            [0] =&gt; GitHub</span>
+<span class="x">            [1] =&gt; GitHub is a web-based Git repository hosting service. It offers all of the distributed revision control and source code management (SCM) functionality of Git as well as adding its own features. </span>
+<span class="x">            [2] =&gt; http://en.wikipedia.org/wiki/GitHub</span>
+<span class="x">        )</span>
+<span class="x">    */</span>
 </pre></div>
 </td></tr></table>
 
 <p>So if you only want to display the definition of <strong>GitHub</strong> as shown in the above example:</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">$trick = Trickster::wiki(&#39;github&#39;);</span>
-<span class="x">echo $trick[1];</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    $trick = Trickster::wiki(&#39;github&#39;);</span>
+<span class="x">    echo $trick[1];</span>
 </pre></div>
 </td></tr></table>
 
@@ -858,20 +863,16 @@ Array
 2
 3
 4
-5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">// Google&#39;s URL Shortener</span>
-<span class="x">Trickster::shortenUrl(&#39;http://github.io&#39;, &#39;google&#39;);</span>
+5</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    // Google&#39;s URL Shortener</span>
+<span class="x">    Trickster::shortenUrl(&#39;http://github.io&#39;, &#39;google&#39;);</span>
 
-<span class="x">// TinyURL URL Shortener</span>
-<span class="x">Trickster::shortenUrl(&#39;http://github.com&#39;, &#39;tinyurl&#39;);</span>
+<span class="x">    // TinyURL URL Shortener</span>
+<span class="x">    Trickster::shortenUrl(&#39;http://github.com&#39;, &#39;tinyurl&#39;);</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="16-suggest">16. Suggest</h3>
 <p>Suggest uses the Google Suggest API to get the keyword suggestions. Just provide the input of the keyword that you want the suggestions for as the first parameter and the results will be generated and returned as an array.</p>
-<table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::suggest(&#39;break&#39;);</span>
-</pre></div>
-</td></tr></table>
-
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre> 1
  2
  3
@@ -887,35 +888,44 @@ Array
 13
 14
 15
-16</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">// Output</span>
+16
+17
+18
+19</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::suggest(&#39;break&#39;);</span>
 
+<span class="x">    /*</span>
+<span class="x">        Output</span>
 
-<span class="x">Array</span>
-<span class="x">(</span>
-<span class="x">    [0] =&gt; breaking</span>
-<span class="x">    [1] =&gt; breaking bad</span>
-<span class="x">    [2] =&gt; break the glass</span>
-<span class="x">    [3] =&gt; break plan</span>
-<span class="x">    [4] =&gt; breaking bad imdb</span>
-<span class="x">    [5] =&gt; kitkat break</span>
-<span class="x">    [6] =&gt; break the bones</span>
-<span class="x">    [7] =&gt; breakthrough</span>
-<span class="x">    [8] =&gt; breaking benjamin</span>
-<span class="x">    [9] =&gt; breakup</span>
-<span class="x">)</span>
+<span class="x">        Array</span>
+<span class="x">        (</span>
+<span class="x">            [0] =&gt; breaking</span>
+<span class="x">            [1] =&gt; breaking bad</span>
+<span class="x">            [2] =&gt; break the glass</span>
+<span class="x">            [3] =&gt; break plan</span>
+<span class="x">            [4] =&gt; breaking bad imdb</span>
+<span class="x">            [5] =&gt; kitkat break</span>
+<span class="x">            [6] =&gt; break the bones</span>
+<span class="x">            [7] =&gt; breakthrough</span>
+<span class="x">            [8] =&gt; breaking Benjamin</span>
+<span class="x">            [9] =&gt; breakup</span>
+<span class="x">        )</span>
+<span class="x">    */</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="17-ip-grabber">17. IP Grabber</h3>
 <p>Grabs the user's IP address. Simple but useful.</p>
 <table class="codehilitetable"><tr><td class="linenos"><div class="linenodiv"><pre>1
-2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">Trickster::ip();</span>
-<span class="x">// Output: 192.168.145.35</span>
+2</pre></div></td><td class="code"><div class="codehilite"><pre><span></span><span class="x">    Trickster::ip();</span>
+<span class="x">    // Output: 192.168.145.35</span>
 </pre></div>
 </td></tr></table>
 
 <h3 id="18-currency-converter">18. Currency Converter</h3>
-<p>With the help of <strong><em>CURL</em></strong> and <strong><em>Google</em></strong> the currency is converted using the live exchange rate. Trickster's <code>Trickster::currencyConvert()</code> can convert currency within seconds using the Currency Codes.</p>
+<p>With the help of <strong><em>CURL</em></strong> and <strong><em>Google Finance</em></strong> the currency is converted using the live exchange rate. Trickster's <code>Trickster::currencyConvert()</code> can convert currency within seconds using the Currency Codes.</p>
+<blockquote>
+<p>Returns <code>ErrorException</code> if off-line and developing on localhost as connection to Google's Finance API is not Successful.</p>
+</blockquote>
 <p>The Currency Converter excepts three Parameters with last an optional one.</p>
 <p>Parameters &amp; Inputs:</p>
 <table>
@@ -933,21 +943,21 @@ Array
 <td>Amount</td>
 <td>The amount to convert</td>
 <td>Integer</td>
-<td><strong>------</strong></td>
+<td><strong> --- </strong></td>
 <td>Currency Amount</td>
 </tr>
 <tr>
 <td>From</td>
 <td>Convert Currency From</td>
 <td>String</td>
-<td><strong>------</strong></td>
+<td><strong> --- </strong></td>
 <td>Currency Code</td>
 </tr>
 <tr>
 <td>To</td>
 <td>Convert Currency To</td>
 <td>String</td>
-<td><strong>INR</strong></td>
+<td><strong> --- </strong></td>
 <td>Currency Code</td>
 </tr>
 </tbody>
