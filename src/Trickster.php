@@ -575,8 +575,13 @@ class Trickster
      * @param  string $to Currency code to convert "to" Default=INR
      * @return string      Return json data
      */
-    public function currencyConvert($amount, $from, $to='INR') {
+    public function currencyConvert($amount, $from, $to)
+    {
      
+        if($from===$to)
+        {
+            return round($amount, 2);
+        }
         
         $url = sprintf($this->_googleFinanceApi, $amount, $from, $to);
 
