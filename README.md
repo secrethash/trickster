@@ -6,10 +6,9 @@ A Simple Extended helper functions for Laravel. Supports v5.3+ (also **v5.5**). 
 > **Open For Suggestions** on more Tricks/Helper Functions that Laravel does not provides by default. **Give your suggestions using *Issue* Tracking feature of GitHub** and I will do my best to add them.
 
 ## Upgrade Guide
-### To v2.1.0
+### To v2.3.1
 - Update your published `config\trickster.php` according to the project's updated `config\trickster.php`.
-- Remove the Usage of Twitter Analytics as it's support has now been discontinued and therefore, it has been removed from Trickster also.
-
+    - **Update your Google Finance API URL**, check the [config/trickster.php](src/config/trickster.php) configuration file.
 ## Trickster’s Tricks
 	1. Truncator
     2. Email Validator

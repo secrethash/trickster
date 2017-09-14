@@ -64,7 +64,7 @@ class Trickster
      * Get vimeo video data from api
      * @var string
      */
-    protected $_googleFinanceApi = 'https://www.google.com/finance/converter?a=%d&from=%s&to=%s';
+    protected $_googleFinanceApi = 'https://finance.google.com/finance/converter?a=%d&from=%s&to=%s';
 
     /**
      * Display a listing of the resource.

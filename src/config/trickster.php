@@ -45,7 +45,7 @@ return array(
             'urlShorten'    =>  'https://www.googleapis.com/urlshortener/v1/url',
             'suggest'       =>  'https://suggestqueries.google.com/complete/search?output=firefox&client=firefox&hl=en-US&q=%s',
             'youtube'       =>  'https://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json',
-            'finance'       =>  'https://www.google.com/finance/converter?a=%d&from=%s&to=%s'
+            'finance'       =>  'https://finance.google.com/finance/converter?a=%d&from=%s&to=%s'
             ),
         'wikipedia'  => array(
             'askWiki'       =>  'https://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1'
