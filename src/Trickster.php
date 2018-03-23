@@ -2,6 +2,8 @@
 
 namespace Secrethash\Trickster;
 
+use Log;
+
 
 class Trickster
 {
@@ -61,10 +63,11 @@ class Trickster
     protected $_vimeoVideoApi = '';
 
     /**
-     * Get vimeo video data from api
+     * Get Exchange Rate from api
      * @var string
      */
-    protected $_googleFinanceApi = 'https://finance.google.com/finance/converter?a=%d&from=%s&to=%s';
+    protected $_currencyConvertApi = '';
+    protected $_currencyConvertApiKey = '';
 
     /**
      * Display a listing of the resource.
@@ -83,7 +86,8 @@ class Trickster
         $this->_wikiApiUrl = config('trickster.apiUrl.wikipedia.askWiki');
         $this->_youtubeVideoApi = config('trickster.apiUrl.google.youtube');
         $this->_vimeoVideoApi = config('trickster.apiUrl.vimeo.vimeo');
-        $this->_googleFinanceApi = (config('trickster.apiUrl.google.finance') ? config('trickster.apiUrl.google.finance') : $this->_googleFinanceApi);
+        $this->_currencyConvertApi = config('trickster.apiUrl.exchangerate.url');
+        $this->_currencyConvertApiKey = config('trickster.api.exchangerate.api');
     }
     
     /**
@@ -583,7 +587,7 @@ class Trickster
             return round($amount, 2);
         }
         
-        $url = sprintf($this->_googleFinanceApi, $amount, $from, $to);
+        $url = sprintf($this->_currencyConvertApi, $this->_currencyConvertApiKey, $from, $to);
 
         $req = curl_init();
         $timeout = 0;
@@ -595,10 +599,18 @@ class Trickster
         curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
         $rawdata = curl_exec($req);
         curl_close($req);
-        $data = explode('bld>', $rawdata);
-        $data = explode($to, $data[1]);
+        $data = json_decode($rawdata, true);
 
-        return round($data[0], 2);
+        if ($data['result']==='success')
+        {
+            $conv = $amount * $data['rate'];
+            return round($conv, 2);
+        } elseif ($data['result']==='failed') {
+            Log::critical('The Currency Converter returned error: '.$data['error']);
+        }
+
+        return false;
+
 
 
 

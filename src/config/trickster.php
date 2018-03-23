@@ -10,14 +10,19 @@ return array(
      |   + Google
      |     - URL Shortener: Google API key for URL Shortener. Get the active api key from Google.
      |     - URL Shortener: Login to Google Console to get the API key.
+     |   + Exchange Rate
+     |     - Currency Converter API KEY
      |
      */
 
     'api' => array(
-        'google'=>array(
-            'urlShorten'=>'API_KEY'
-            )
-        ),
+        'google'        => array(
+            'urlShorten'    => 'API_KEY'
+            ),
+        'exchangerate'  => array(
+            'api'       => 'YOUR_API_KEY' #GET IT FROM https://www.exchangerate-api.com/
+        )
+    ),
 
     /*
      |-------------------------------------------------------------------------------------
@@ -37,28 +42,32 @@ return array(
      |     - Social Analytics:  API url to get Likes Count.
      |   + TinyURL
      |     - URL SHORTENER:     API url for Url Shortener
+     |   + ExchangeRate
+     |     - url:               API URL for www.exchangerate-api.com
      |
      */
      
     'apiUrl' => array(
-        'google'     => array(
+        'google'      => array(
             'urlShorten'    =>  'https://www.googleapis.com/urlshortener/v1/url',
             'suggest'       =>  'https://suggestqueries.google.com/complete/search?output=firefox&client=firefox&hl=en-US&q=%s',
-            'youtube'       =>  'https://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json',
-            'finance'       =>  'https://finance.google.com/finance/converter?a=%d&from=%s&to=%s'
-            ),
-        'wikipedia'  => array(
+            'youtube'       =>  'https://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json'
+        ),
+        'wikipedia'   => array(
             'askWiki'       =>  'https://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1'
-            ),
-        'facebook'   => array(
+        ),
+        'facebook'    => array(
             'social'        =>  'https://graph.facebook.com/?ids=%s'
-            ),
-        'tinyurl'    => array(
+        ),
+        'tinyurl'     => array(
             'urlShorten'    =>  'https://tinyurl.com/api-create.php?url=%s'
-            ),
-        'vimeo'      => array(
+        ),
+        'vimeo'       => array(
             'vimeo'         =>  'https://vimeo.com/api/v2/video/%s.json'
-            )
+        ),
+        'exchangerate'=> array(
+            'url'           =>  'https://v3.exchangerate-api.com/pair/%s/%s/%s' # /%s/%s/%s => /API_KEY/FROM/TO
+        )
     ),
 
     /*
@@ -77,7 +86,7 @@ return array(
      |
      */
 
-    'ts_aTags' => '<a><b><i><s><u><p><pre><code>',
+    'ts_aTags' => '<a><b><i><s><u><p><pre><code>'
 
 
 );
