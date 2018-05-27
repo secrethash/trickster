@@ -20,7 +20,10 @@ return array(
             'urlShorten'    => 'API_KEY'
             ),
         'exchangerate'  => array(
-            'api'       => 'YOUR_API_KEY' #GET IT FROM https://www.exchangerate-api.com/
+            'api'       => 'YOUR_API_KEY' # GET IT FROM https://www.exchangerate-api.com/
+        ),
+        'currencylayer'  => array(
+            'api'       => 'YOUR_API_KEY' # GET IT FROM https://www.currencylayer.com/
         )
     ),
 
@@ -67,6 +70,9 @@ return array(
         ),
         'exchangerate'=> array(
             'url'           =>  'https://v3.exchangerate-api.com/pair/%s/%s/%s' # /%s/%s/%s => /API_KEY/FROM/TO
+        ),
+        'currencylayer'=> array(
+            'url'           =>  'http://apilayer.net/api/live?access_key=%s&currencies=%s&format=1' # /%s/%s/%s => ?API_KEY&FROM/TO
         )
     ),
 
@@ -86,7 +92,23 @@ return array(
      |
      */
 
-    'ts_aTags' => '<a><b><i><s><u><p><pre><code>'
+    'ts_aTags' => '<a><b><i><s><u><p><pre><code>',
+
+    /**
+     * ---------------------------------------------------------------------------
+     * Currency Converter Configurations
+     * ---------------------------------------------------------------------------
+     * 
+     * # Configuration Items
+     * - converter: The Convert Service that will be used to convert the Currency.
+     *  + exchangerate: Use the exchangerate-api.com API
+     *  + currencylayer: Use the Currency Layer API
+     *  + smartconvert: Covert Using Smart Convertion Algorithm. It increases your
+     *                  conversion limit quota. Smart Convert uses all the active
+     *                  apis that you have setup or provided the API for.
+     * 
+     */
+    'converter' => 'smart'
 
 
 );

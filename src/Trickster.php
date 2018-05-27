@@ -63,11 +63,24 @@ class Trickster
     protected $_vimeoVideoApi = '';
 
     /**
-     * Get Exchange Rate from api
+     * Exchange Rate API
      * @var string
      */
-    protected $_currencyConvertApi = '';
-    protected $_currencyConvertApiKey = '';
+    protected $_exchangeRateApi = '';
+    protected $_exchangeRateApiKey = '';
+    
+    /**
+     * Currency Layer API
+     * @var string
+     */
+    protected $_currencyLayerApi = '';
+    protected $_currencyLayerApiKey = '';
+
+    /**
+     * Currency Converter
+     * @var string
+     */
+    protected $_currencyConverter = '';
 
     /**
      * Display a listing of the resource.
@@ -86,8 +99,11 @@ class Trickster
         $this->_wikiApiUrl = config('trickster.apiUrl.wikipedia.askWiki');
         $this->_youtubeVideoApi = config('trickster.apiUrl.google.youtube');
         $this->_vimeoVideoApi = config('trickster.apiUrl.vimeo.vimeo');
-        $this->_currencyConvertApi = config('trickster.apiUrl.exchangerate.url');
-        $this->_currencyConvertApiKey = config('trickster.api.exchangerate.api');
+        $this->_exchangeRateApi = config('trickster.apiUrl.exchangerate.url');
+        $this->_exchangeRateApiKey = config('trickster.api.exchangerate.api');
+        $this->_currencyLayerApi = config('trickster.apiUrl.currencylayer.url');
+        $this->_currencyLayerApiKey = config('trickster.api.currencylayer.api');
+        $this->_currencyConverter = config('trickster.converter');
     }
     
     /**
@@ -587,7 +603,59 @@ class Trickster
             return round($amount, 2);
         }
         
-        $url = sprintf($this->_currencyConvertApi, $this->_currencyConvertApiKey, $from, $to);
+        if ($this->_currencyConverter==='currencylayer')
+        {
+            $conv = self::currencyLayerConvert($amount, $from, $to);
+        }
+        elseif ($this->_currencyConverter==='exchangerate')
+        {
+            return self::exchangeRateConvert($amount, $from, $to);
+        }
+        elseif ($this->_currencyConverter==='smart')
+        {
+            return self::smartConvert($amount, $from, $to);
+        }
+
+
+
+    }
+
+    public function currencyLayerConvert($amount, $from, $to)
+    {
+        // To/From*Amount
+        $url = sprintf($this->_currencyLayerApi, $this->_currencyLayerApiKey, $from.','.$to);
+
+        $req = curl_init();
+        $timeout = 0;
+        curl_setopt ($req, CURLOPT_URL, $url);
+        curl_setopt ($req, CURLOPT_RETURNTRANSFER, 1);
+
+        curl_setopt ($req, CURLOPT_USERAGENT,
+                     "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+        curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
+        $rawdata = curl_exec($req);
+        curl_close($req);
+        $data = json_decode($rawdata, true);
+        Log::debug('Data: '.$rawdata);
+
+        if ($data['success']===true)
+        {
+            $toRate = $data['quotes']['USD'.$to];
+            $fromRate = $data['quotes']['USD'.$from];
+            $converted = ($toRate / $fromRate) * $amount;
+            return round($converted, 2);
+        }
+
+        Log::critical('Currency Conversion Failed! Raw data: '.$rawdata);
+
+        return false;
+        
+    }
+
+    public function exchangeRateConvert($amount, $from, $to)
+    {
+        
+        $url = sprintf($this->_exchangeRateApi, $this->_exchangeRateApiKey, $from, $to);
 
         $req = curl_init();
         $timeout = 0;
@@ -605,17 +673,45 @@ class Trickster
         {
             $conv = $amount * $data['rate'];
             return round($conv, 2);
-        } elseif ($data['result']==='failed') {
+        } elseif ($data['result']==='error') {
             Log::critical('The Currency Converter returned error: '.$data['error']);
         }
 
         return false;
-
-
-
-
     }
 
+    /**
+     * Smart Currency Conversion
+     * This uses the activated APIs and increases your monthly quotas
+     * @return float
+     */
+    public function smartConvert($amount, $from, $to)
+    {
+        // Smart Convert Logic
+        Log::info('Running Smart Currency Conversion');
+
+        if ($this->_currencyLayerApiKey != NULL)
+        {
+            $conv = self::currencyLayerConvert($amount, $from, $to);
+            
+            if(!$conv)
+            {
+                if ($this->_exchangeRateApiKey != NULL)
+                {
+                    return self::exchangeRateConvert($amount, $from, $to);
+                }
+                return false;
+            }
+
+            return $conv;
+        }
+        elseif ($this->_exchangeRateApiKey != NULL)
+        {
+            return self::exchangeRateConvert($amount, $from, $to);
+        }
+
+        return false;
+    }
 
     /**
      * This function used for return tweets and likes with curl
