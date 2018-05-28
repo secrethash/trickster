@@ -3,6 +3,7 @@
 namespace Secrethash\Trickster;
 
 use Log;
+use Cache;
 
 
 class Trickster
@@ -83,6 +84,12 @@ class Trickster
     protected $_currencyConverter = '';
 
     /**
+     * Cache Timeout or Expiry
+     * @var string
+     */
+    protected $_currencyCacheTimeout = '';
+
+    /**
      * Display a listing of the resource.
      *
      * @return Response
@@ -103,7 +110,8 @@ class Trickster
         $this->_exchangeRateApiKey = config('trickster.api.exchangerate.api');
         $this->_currencyLayerApi = config('trickster.apiUrl.currencylayer.url');
         $this->_currencyLayerApiKey = config('trickster.api.currencylayer.api');
-        $this->_currencyConverter = config('trickster.converter');
+        $this->_currencyConverter = config('trickster.currency.converter');
+        $this->_currencyCacheTimeout = config('trickster.currency.cache');
     }
     
     /**
@@ -605,76 +613,95 @@ class Trickster
         
         if ($this->_currencyConverter==='currencylayer')
         {
-            $conv = self::currencyLayerConvert($amount, $from, $to);
+            return self::currencyLayerConvert($amount, $from, $to);
         }
         elseif ($this->_currencyConverter==='exchangerate')
         {
             return self::exchangeRateConvert($amount, $from, $to);
         }
-        elseif ($this->_currencyConverter==='smart')
-        {
-            return self::smartConvert($amount, $from, $to);
-        }
-
-
+        
+        return self::smartConvert($amount, $from, $to);
 
     }
 
     public function currencyLayerConvert($amount, $from, $to)
     {
-        // To/From*Amount
-        $url = sprintf($this->_currencyLayerApi, $this->_currencyLayerApiKey, $from.','.$to);
-
-        $req = curl_init();
-        $timeout = 0;
-        curl_setopt ($req, CURLOPT_URL, $url);
-        curl_setopt ($req, CURLOPT_RETURNTRANSFER, 1);
-
-        curl_setopt ($req, CURLOPT_USERAGENT,
-                     "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
-        curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $rawdata = curl_exec($req);
-        curl_close($req);
-        $data = json_decode($rawdata, true);
-        Log::debug('Data: '.$rawdata);
-
-        if ($data['success']===true)
+        $cache = Cache::get('trickster.currency.currencylayer');
+        if(!$cache)
         {
+            $expiresAt = now()->addMinutes(30);
+            // To/From*Amount
+            $url = sprintf($this->_currencyLayerApi, $this->_currencyLayerApiKey, $from.','.$to);
+            $req = curl_init();
+            $timeout = 0;
+            curl_setopt ($req, CURLOPT_URL, $url);
+            curl_setopt ($req, CURLOPT_RETURNTRANSFER, 1);
+
+            curl_setopt ($req, CURLOPT_USERAGENT,
+                        "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+            curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
+            $rawdata = curl_exec($req);
+            curl_close($req);
+            $data = json_decode($rawdata, true);
+            Log::debug('Data: '.$rawdata);
+
+            if ($data['success']===true)
+            {
+                $toRate = $data['quotes']['USD'.$to];
+                $fromRate = $data['quotes']['USD'.$from];
+                $converted = ($toRate / $fromRate) * $amount;
+                $resque =  round($converted, 2);
+                Cache::add('trickster.currency.currencylayer', $rawdata, $expiresAt);
+                return $resque;
+            }
+
+            Log::critical('Currency Conversion Failed! Raw data: '.$rawdata);
+
+            return false;
+        }
+        else
+        {
+            $data = json_decode($cache, true);
             $toRate = $data['quotes']['USD'.$to];
             $fromRate = $data['quotes']['USD'.$from];
-            $converted = ($toRate / $fromRate) * $amount;
-            return round($converted, 2);
+            return self::currencyLayerCalculate($toRate, $fromRate, $amount);
         }
-
-        Log::critical('Currency Conversion Failed! Raw data: '.$rawdata);
-
-        return false;
         
     }
 
     public function exchangeRateConvert($amount, $from, $to)
     {
-        
-        $url = sprintf($this->_exchangeRateApi, $this->_exchangeRateApiKey, $from, $to);
-
-        $req = curl_init();
-        $timeout = 0;
-        curl_setopt ($req, CURLOPT_URL, $url);
-        curl_setopt ($req, CURLOPT_RETURNTRANSFER, 1);
-
-        curl_setopt ($req, CURLOPT_USERAGENT,
-                     "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
-        curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
-        $rawdata = curl_exec($req);
-        curl_close($req);
-        $data = json_decode($rawdata, true);
-
-        if ($data['result']==='success')
+        $cache = Cache::get('trickster.currency.exchangerate');
+        if (!$cache)
         {
-            $conv = $amount * $data['rate'];
-            return round($conv, 2);
-        } elseif ($data['result']==='error') {
-            Log::critical('The Currency Converter returned error: '.$data['error']);
+            $expiresAt = now()->addMinutes(30);
+            
+            $url = sprintf($this->_exchangeRateApi, $this->_exchangeRateApiKey, $from, $to);
+            $req = curl_init();
+            $timeout = 0;
+            curl_setopt ($req, CURLOPT_URL, $url);
+            curl_setopt ($req, CURLOPT_RETURNTRANSFER, 1);
+
+            curl_setopt ($req, CURLOPT_USERAGENT,
+                        "Mozilla/4.0 (compatible; MSIE 8.0; Windows NT 6.1)");
+            curl_setopt ($req, CURLOPT_CONNECTTIMEOUT, $timeout);
+            $rawdata = curl_exec($req);
+            curl_close($req);
+            $data = json_decode($rawdata, true);
+
+            if ($data['result']==='success')
+            {
+                $resque = Self::exchangeRateCalculate($data['rate'], $amount);
+                Cache::add('trickster.currency.exchangerate', $rawdata, $expiresAt);
+                return $resque;
+            } elseif ($data['result']==='error') {
+                Log::critical('The Currency Converter returned error: '.$data['error']);
+            }
+        }
+        else
+        {
+            $data = json_decode($cache, true);
+            return Self::exchangeRateCalculate($data['rate'], $amount);
         }
 
         return false;
@@ -693,7 +720,7 @@ class Trickster
         if ($this->_currencyLayerApiKey != NULL)
         {
             $conv = self::currencyLayerConvert($amount, $from, $to);
-            
+
             if(!$conv)
             {
                 if ($this->_exchangeRateApiKey != NULL)
@@ -711,6 +738,26 @@ class Trickster
         }
 
         return false;
+    }
+    /**
+     * Calculation of the converted currency
+     * @access protected
+     * @return float
+     */
+    protected function exchangeRateCalculate($rate, $amount)
+    {
+        // code
+        $conv = $amount * $rate;
+        $resque = round($conv, 2);
+        return $resque;
+    }
+
+    protected function currencyLayerCalculate($toRate, $fromRate, $amount)
+    {
+        // code
+        $converted = ($toRate / $fromRate) * $amount;
+        $resque =  round($converted, 2);
+        return $resque;
     }
 
     /**

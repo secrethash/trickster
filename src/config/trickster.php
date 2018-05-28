@@ -1,6 +1,6 @@
 <?php
 
-return array(
+return [
 
     /*
      |--------------------------------------------------------------------------
@@ -12,20 +12,22 @@ return array(
      |     - URL Shortener: Login to Google Console to get the API key.
      |   + Exchange Rate
      |     - Currency Converter API KEY
+     |   + Currency Layer
+     |     - Currency Converter API Key
      |
      */
 
-    'api' => array(
-        'google'        => array(
-            'urlShorten'    => 'API_KEY'
-            ),
-        'exchangerate'  => array(
-            'api'       => 'YOUR_API_KEY' # GET IT FROM https://www.exchangerate-api.com/
-        ),
-        'currencylayer'  => array(
-            'api'       => 'YOUR_API_KEY' # GET IT FROM https://www.currencylayer.com/
-        )
-    ),
+    'api' => [
+        'google'        => [
+            'urlShorten'    => '',
+        ],
+        'exchangerate'  => [
+            'api'       => '', # GET IT FROM https://www.exchangerate-api.com/
+        ],
+        'currencylayer'  => [
+            'api'       => '', # GET IT FROM https://www.currencylayer.com/
+        ],
+    ],
 
     /*
      |-------------------------------------------------------------------------------------
@@ -47,34 +49,36 @@ return array(
      |     - URL SHORTENER:     API url for Url Shortener
      |   + ExchangeRate
      |     - url:               API URL for www.exchangerate-api.com
+     |   + CurrencyLayer
+     |     - url:               API URL for currencylayer.com
      |
      */
      
-    'apiUrl' => array(
-        'google'      => array(
+    'apiUrl' => [
+        'google'      => [
             'urlShorten'    =>  'https://www.googleapis.com/urlshortener/v1/url',
             'suggest'       =>  'https://suggestqueries.google.com/complete/search?output=firefox&client=firefox&hl=en-US&q=%s',
-            'youtube'       =>  'https://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json'
-        ),
-        'wikipedia'   => array(
-            'askWiki'       =>  'https://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1'
-        ),
-        'facebook'    => array(
-            'social'        =>  'https://graph.facebook.com/?ids=%s'
-        ),
-        'tinyurl'     => array(
-            'urlShorten'    =>  'https://tinyurl.com/api-create.php?url=%s'
-        ),
-        'vimeo'       => array(
-            'vimeo'         =>  'https://vimeo.com/api/v2/video/%s.json'
-        ),
-        'exchangerate'=> array(
-            'url'           =>  'https://v3.exchangerate-api.com/pair/%s/%s/%s' # /%s/%s/%s => /API_KEY/FROM/TO
-        ),
-        'currencylayer'=> array(
-            'url'           =>  'http://apilayer.net/api/live?access_key=%s&currencies=%s&format=1' # /%s/%s/%s => ?API_KEY&FROM/TO
-        )
-    ),
+            'youtube'       =>  'https://gdata.youtube.com/feeds/api/videos/%s?v=2&alt=json',
+        ],
+        'wikipedia'   => [
+            'askWiki'       =>  'https://en.wikipedia.org/w/api.php?action=opensearch&search=%s&format=xml&limit=1',
+        ],
+        'facebook'    => [
+            'social'        =>  'https://graph.facebook.com/?ids=%s',
+        ],
+        'tinyurl'     => [
+            'urlShorten'    =>  'https://tinyurl.com/api-create.php?url=%s',
+        ],
+        'vimeo'       => [
+            'vimeo'         =>  'https://vimeo.com/api/v2/video/%s.json',
+        ],
+        'exchangerate'=> [
+            'url'           =>  'https://v3.exchangerate-api.com/pair/%s/%s/%s', # /%s/%s/%s => /API_KEY/FROM/TO
+        ],
+        'currencylayer'=> [
+            'url'           =>  'http://apilayer.net/api/live?access_key=%s&currencies=%s&format=1', # /%s/%s/%s => ?API_KEY&FROM/TO
+        ],
+    ],
 
     /*
      |--------------------------------------------------------------------------
@@ -106,9 +110,17 @@ return array(
      *  + smartconvert: Covert Using Smart Convertion Algorithm. It increases your
      *                  conversion limit quota. Smart Convert uses all the active
      *                  apis that you have setup or provided the API for.
-     * 
+     * - cache: Caching is done to reduce the cost and improve the monthly quota limit.
+     *  + The Time is in minutes.
+     *  + Lesser the Time more quota is used. 
+     *  + Set 'cache' => 0, (Zero) for realtime updates from the server.
+     *  + Note: The server (exchangerate-api.com/currencylayer.com) upadtes the rate on hourly basis only,
+     *          so the quota will be utilized whereas the rate might not change.
      */
-    'converter' => 'smart'
+    'currency' => [
+        'converter' => NULL, # By default it utilizes smart conversion
+        'cache'     => 30, # Set it to 0 for real-time.
+    ],
 
 
-);
+    ];
