@@ -629,7 +629,7 @@ class Trickster
         $cache = Cache::get('trickster.currency.currencylayer');
         if(!$cache)
         {
-            $expiresAt = now()->addMinutes(30);
+            $expiresAt = now()->addMinutes($this->_currencyCacheTimeout);
             // To/From*Amount
             $url = sprintf($this->_currencyLayerApi, $this->_currencyLayerApiKey, $from.','.$to);
             $req = curl_init();
@@ -674,7 +674,7 @@ class Trickster
         $cache = Cache::get('trickster.currency.exchangerate');
         if (!$cache)
         {
-            $expiresAt = now()->addMinutes(30);
+            $expiresAt = now()->addMinutes($this->_currencyCacheTimeout);
             
             $url = sprintf($this->_exchangeRateApi, $this->_exchangeRateApiKey, $from, $to);
             $req = curl_init();
