@@ -1,13 +1,18 @@
 {
-    "name": "secrethash/trickster",
+    "name": "KalimeroMK/trickster",
     "description": "Trickster is a package for laravel that has many useful tricks that can be used for quick and easy website management.",
     "license": "MIT",
     "authors": [
         {
             "name": "Shashwat Mishra",
             "email": "shashwat9630@gmail.com"
+        },
+        {
+            "name": "Zoran Bogoevski",
+            "email": "zbogoevski@gmail.com"
         }
     ],
+
     "autoload": {
     	"psr-4": {
     		"Secrethash\\Trickster\\": "src/"
